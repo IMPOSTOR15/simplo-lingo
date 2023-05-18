@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled, { css, keyframes } from 'styled-components';
-import { NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useScroll } from 'react-use';
 import logo from './logo.png'; // Путь до логотипа
 import {
@@ -33,10 +33,11 @@ const Navbar = () => {
     const scrollY = useScrollPosition();
     const location = useLocation();
     const [open, setOpen] = useState(false);
+    let navigate = useNavigate();
 
     return (
         <Nav>
-            <LogoContainer>
+            <LogoContainer onClick={()=> navigate("/")}>
                 <LogoImage src={logo} alt="logo" scrollY={scrollY} />
                 <Logo>SimploLingo</Logo>
             </LogoContainer>
@@ -46,7 +47,7 @@ const Navbar = () => {
                 <StyledNavLink to="/link2" isActive={() => location.pathname.includes('/link2')}>Link 2</StyledNavLink>
                 <StyledNavLink to="/link3" isActive={() => location.pathname.includes('/link3')}>Link 3</StyledNavLink>
             </NavLinks>
-            <LoginButton>Войти</LoginButton>
+            <LoginButton onClick={()=> navigate("/login")}>Войти</LoginButton>
             <BurgerMenuButton onClick={() => setOpen(!open)}>
                 <span>☰</span>
             </BurgerMenuButton>

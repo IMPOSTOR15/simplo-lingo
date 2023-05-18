@@ -23,6 +23,7 @@ export const Nav = styled.nav`
 `;
 
 export const LogoContainer = styled.div`
+    cursor: pointer;
     display: flex;
     align-items: center;
     @media (max-width: 768px) {

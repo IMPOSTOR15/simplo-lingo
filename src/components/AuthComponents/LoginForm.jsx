@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import cl from './LoginForm.module.css'
-import { NavLink } from 'react-router-dom';
+import { NavLink, Navigate, useNavigate } from 'react-router-dom';
+import { PROFILE_ROUTE } from '../../utils/consts';
 const LoginForm = () => {
+    const navigate = useNavigate()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
+    const click = () => {
+        navigate(PROFILE_ROUTE)
+    }
     return (
         <div>
             <div className={cl.loginForm}>
@@ -12,7 +16,6 @@ const LoginForm = () => {
                 <div className={cl.textField}>
                     <label
                         className={cl.textField__label}
-                        for="email"
                     >
                         E-mail
                     </label>
@@ -28,9 +31,8 @@ const LoginForm = () => {
                 <div className={cl.textField}>
                     <label
                         className={cl.textField__label}
-                        for="password"
                     >
-                        Логин
+                        Пароль
                     </label>
                     <input
                         className={cl.textField__input}
@@ -43,7 +45,7 @@ const LoginForm = () => {
                 </div>
                 <p className={cl.registrationText}>Нет аккаунта? <NavLink className={cl.registrationLink} to={'/registration'}>Регистрация</NavLink></p>
                 
-                <button className={cl.LoginButton}>ВОЙТИ</button>
+                <button className={cl.LoginButton} onClick={click}>ВОЙТИ</button>
             </div>
         </div>
     );

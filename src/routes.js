@@ -1,15 +1,17 @@
 import LoginPage from "./pages/LoginPage"
 import HomePage from "./pages/HomePage"
 import { HOME_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, PROFILE_ROUTE } from "./utils/consts"
+import ProfilePage from "./pages/ProfilePage"
 
 export const authRoutes = [
-    {
-        path: PROFILE_ROUTE + '/:id',
-        component: ''
-    },
+    
 ]
 
 export const publicRoutes = [
+    {
+        path: PROFILE_ROUTE,
+        component: <ProfilePage/>
+    },
     {
         path: HOME_ROUTE,
         component: <HomePage/>

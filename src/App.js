@@ -4,6 +4,7 @@ import Navbar from "./components/UI/Navbar/Navbar";
 import { useContext, useEffect, useState } from 'react';
 import { Context } from '.';
 import AppRouter from './components/AppRouter';
+import Alert from './components/UI/Alert/Alert';
 
 function App() {
   const {user} = useContext(Context)
@@ -23,6 +24,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Navbar></Navbar>
+        <Alert/>
         <AppRouter/>
       </BrowserRouter>
     </div>

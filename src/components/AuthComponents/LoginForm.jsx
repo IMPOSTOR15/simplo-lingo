@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import cl from './LoginForm.module.css'
-import { NavLink, Navigate, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { PROFILE_ROUTE } from '../../utils/consts';
 const LoginForm = () => {
     const navigate = useNavigate()

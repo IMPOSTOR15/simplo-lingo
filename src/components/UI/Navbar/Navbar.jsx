@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import styled, { css, keyframes } from 'styled-components';
-import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { useScroll } from 'react-use';
-import logo from './logo.png'; // Путь до логотипа
+import { useLocation, useNavigate } from 'react-router-dom';
+import logo from '../../../assets/logo.png'; // Путь до логотипа
 import {
     Nav,
     LogoContainer,

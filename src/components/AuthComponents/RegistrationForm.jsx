@@ -1,40 +1,60 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import cl from './RegistrationForm.module.css'
-import { NavLink, Navigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { Context } from '../..';
 import { PROFILE_ROUTE } from '../../utils/consts';
-
+import {  registration } from '../../http/userAPI';
+import Alert from '../UI/Alert/Alert';
+import classNames from 'classnames';
 
 const RegistrationForm = () => {
     const {user} = useContext(Context)
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmedPassword, setConfirmedPassword] = useState('');
+    const navigate = useNavigate()
+    const [isShowAlert, setIsShowAlert] = useState(false)
+    const [errorText, setErorrText] = useState('')
+    
+    const showAlert = () => {
+        setIsShowAlert(true);
+        const timer = setTimeout(() => {
+            setIsShowAlert(false);
+        }, 4000);
+        return () => {
+            clearTimeout(timer);
+        };
+    };
+
+
     const click = async () => {
         try {
             let data;
-                if (password === confirmedPassword) {
-                    // data = await registration(email, password)
-
-                } else {
-
-                }
-            user.setUser(data)
-            user.setIsAuth(true)
-            Navigate(PROFILE_ROUTE)
+            if (password === confirmedPassword) {
+                data = await registration(email, password, 'user');
+            } else {
+                setErorrText("Пароли не совпадают");
+                showAlert();
+                return
+            }
+            user.setUser(data);
+            user.setIsAuth(true);
+            console.log(data);
+            navigate(PROFILE_ROUTE);
         } 
         catch (e) {
-            alert(e.response.data.message)
+            setErorrText("Ошибка регистрации");
+            showAlert();
         }
     }
     return (
         <div>
+            {isShowAlert && <Alert showAlert={isShowAlert}  handleClose={setIsShowAlert}>{errorText}</Alert>}
             <div className={cl.loginForm}>
                 <h2>Регистрация пользователя</h2>
                 <div className={cl.textField}>
                     <label
                         className={cl.textField__label}
-                        for="email"
                     >
                         E-mail
                     </label>
@@ -50,7 +70,6 @@ const RegistrationForm = () => {
                 <div className={cl.textField}>
                     <label
                         className={cl.textField__label}
-                        for="password"
                     >
                         Пароль
                     </label>
@@ -66,7 +85,6 @@ const RegistrationForm = () => {
                 <div className={cl.textField}>
                     <label
                         className={cl.textField__label}
-                        for="confirmedPassword"
                     >
                         Повтоирте пароль
                     </label>
@@ -86,7 +104,7 @@ const RegistrationForm = () => {
                 }
                 <p className={cl.registrationText}>Есть аккаунт? <NavLink className={cl.registrationLink} to={'/login'}>Войти</NavLink></p>
                 
-                <button onClick={click} className={cl.LoginButton}>РЕГИСТРАЦИЯ</button>
+                <button onClick={click} className={classNames(cl.LoginButton, password !== confirmedPassword && cl.inactiveBtn)}>РЕГИСТРАЦИЯ</button>
             </div>
         </div>
     );

@@ -16,12 +16,16 @@
 
 .card {
     position: relative;
-    
+    display: flex;
+    flex-direction: column;
+    -webkit-box-shadow: 4px 4px 8px 0px rgba(255, 100, 35, 0.2);
+    -moz-box-shadow: 4px 4px 8px 0px rgba(255, 100, 35, 0.2);
+    box-shadow: 4px 4px 8px 0px rgba(255, 100, 35, 0.2);
     width: 30%;
-    flex-direction: row;
-    border: 2px solid orange;
+    border: 1px solid #ff6423;
     border-radius: 10px;
     align-items: center;
+    background-color: #292e33;
 }
 .cardHeader {
     text-align: center;
@@ -33,7 +37,15 @@
     height: auto;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
+}
+.editBtn {
+    width: 70%;
+    border: 1px solid #ff6423;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    margin: auto auto;
 }
 .infoColumn {
 

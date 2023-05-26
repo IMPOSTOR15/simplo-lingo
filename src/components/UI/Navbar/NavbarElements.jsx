@@ -28,6 +28,7 @@ export const LogoContainer = styled.div`
     align-items: center;
     @media (max-width: 768px) {
         justify-content: center;
+        
     }
 `;
 
@@ -44,6 +45,9 @@ export const Divider = styled.div`
     background: ${orange};
     display: block;
     z-index: 1;
+    @media (max-width: 768px) {
+        display: none;
+    }
 
 `
 
@@ -52,6 +56,7 @@ export const Logo = styled.div`
     font-weight: bold;
     @media (max-width: 768px) {
         // display: none;
+        font-size: 1.2rem;
     }
 `;
 
@@ -117,7 +122,9 @@ export const LoginButton = styled.button`
     border: none;
     padding: 0.5rem 1rem;
     color: #fff;
+    width: 200px;
     cursor: pointer;
+    // font-size: 12px;
     border-radius: 20px;
     transition: background 0.3s ease-in-out;
     &:hover {
@@ -127,5 +134,7 @@ export const LoginButton = styled.button`
 
     @media (max-width: 768px) {
         margin: auto 20px auto auto;
+        font-size: 10px;
+        width: 100px;
     }
 `;

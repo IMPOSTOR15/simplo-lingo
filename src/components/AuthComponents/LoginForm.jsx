@@ -1,13 +1,27 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import cl from './LoginForm.module.css'
 import { NavLink, useNavigate } from 'react-router-dom';
 import { PROFILE_ROUTE } from '../../utils/consts';
-const LoginForm = () => {
+import { Context } from '../..';
+import { observer } from 'mobx-react-lite';
+import { login } from '../../http/userAPI';
+const LoginForm = observer(() => {
+    const {user} = useContext(Context)
     const navigate = useNavigate()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const click = () => {
-        navigate(PROFILE_ROUTE)
+    const click = async () => {
+        try {
+            let data = await login(email, password)
+            user.setUser(data)
+            user.setIsAuth(true)
+            navigate(PROFILE_ROUTE)
+            
+        } catch (e) {
+            alert(e.response.data.message)
+
+        }
+        
     }
     return (
         <div>
@@ -49,6 +63,6 @@ const LoginForm = () => {
             </div>
         </div>
     );
-};
+});
 
 export default LoginForm;

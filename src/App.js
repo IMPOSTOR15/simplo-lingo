@@ -12,14 +12,14 @@ const App = observer(() => {
   const [loading, setLoading] = useState(true)
   console.log(process.env.REACT_APP_API_URL);
 
-  // useEffect(() => {
-  //   check().then(data => {
-  //     user.setUser(true)
-  //     user.setIsAuth(true)
-  //   }).finally(() => {
-  //     setLoading(false)
-  //   })
-  // }, [])
+  useEffect(() => {
+    check().then(data => {
+      user.setUser(data)
+      user.setIsAuth(true)
+    }).finally(() => {
+      setLoading(false)
+    })
+  }, [])
 
   return (
     <div className="App">

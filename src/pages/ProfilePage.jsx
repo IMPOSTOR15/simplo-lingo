@@ -1,20 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import cl from "../components/profileComponents/ProfilePage.module.css"
 import { getUserData } from '../http/userAPI';
-const ProfilePage = () => {
+import { Context } from '..';
+import { observer } from 'mobx-react-lite';
+import { HOME_ROUTE } from '../utils/consts';
+import { useNavigate } from 'react-router-dom';
+
+
+const ProfilePage = observer(() => {
+    const {user} = useContext(Context)
+    const navigate = useNavigate()
+
     const [userData, setUserData] = useState({})
+
     useEffect(() => {
         async function fetchData() {
-            setUserData(await getUserData(localStorage.getItem('user_id')))
-            // console.log(localStorage.getItem('user_id'));
-            // console.log(userData);
+            // setUserData(await getUserData(localStorage.getItem('user_id')))
+            console.log(user.user.id);
+            setUserData(await getUserData(user.user.id))
         }
         fetchData();
     }, []);
+
+    const logOut = () => {
+        user.setUser({})
+        user.setIsAuth(false)
+        navigate(HOME_ROUTE)
+    }
     
     return (
         <div className={cl.mainWrapper}>
             <div className={cl.row}>
+                <div className={cl.logoCard}>
+                    <img className={cl.logoImg} src="https://avatars.githubusercontent.com/u/62654099?v=4" alt="" />
+                </div>
                 <div className={cl.card}>   
                     <h2 className={cl.cardHeader}>Информация о профиле</h2>
                     <div className={cl.infoCard}>
@@ -33,7 +52,8 @@ const ProfilePage = () => {
                             <p className={cl.infoParagraph}>13</p>
                         </div>
                     </div>
-                    <button className={cl.editBtn}>редактировать профиль</button>
+                    <button className={cl.editBtn}>РЕДАКТИРОВАТЬ</button>
+                    <button className={cl.editBtn} onClick={() => logOut()}>ВЫЙТИ</button>
                 </div>
                 <div className={cl.card}>   
                     <h2 className={cl.cardHeader}>Рейтинг</h2>
@@ -42,9 +62,7 @@ const ProfilePage = () => {
                     </div>
                     <p className={cl.scoreStr}>100pts</p>
                 </div>
-                <div className={cl.logoCard}>
-                    <img className={cl.logoImg} src="https://avatars.githubusercontent.com/u/62654099?v=4" alt="" />
-                </div> 
+                
             </div>
             <div>
                 <div className={cl.column}>
@@ -67,6 +85,6 @@ const ProfilePage = () => {
             </div>
         </div>
     );
-};
+});
 
 export default ProfilePage;

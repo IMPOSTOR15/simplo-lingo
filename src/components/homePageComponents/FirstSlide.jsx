@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import cl from './FirstSlide.module.css'
 import Typist from 'react-typist';
 import Typewriter from 'typewriter-effect';
+import Mainbutton from '../UI/Buttons/Mainbutton';
 const FirstSlide = () => {
 
     const phrases = [
@@ -43,7 +44,7 @@ const FirstSlide = () => {
                     }}
                 />
             </div>
-            <button className={cl.btnHeader}>НАЧАТЬ СЕЙЧАС</button>
+            <Mainbutton>НАЧАТЬ СЕЙЧАС</Mainbutton>
         </div>
     );
 };

@@ -118,12 +118,19 @@
     font-size: 2rem;
     color: #fff;
 }
+.qestionBtnSection {
+    display: flex;
+    justify-content: center;
+    margin: 3%;
+}
+
 .lastQestions {
     display: flex;
     flex-direction: column;
     /* border: 2px solid orange; */
     border-radius: 10px;
 }
+
 .qestionCard {
     border: 2px solid orange;
     margin: 8px;

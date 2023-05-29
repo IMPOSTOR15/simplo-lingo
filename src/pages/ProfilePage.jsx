@@ -7,6 +7,7 @@ import { HOME_ROUTE } from '../utils/consts';
 import { useNavigate } from 'react-router-dom';
 import baseprofileimg from '../assets/profileMockup.png'
 import EditProfileModal from '../components/profileComponents/EditProfileModal';
+import Mainbutton from '../components/UI/Buttons/Mainbutton';
 
 const ProfilePage = observer(() => {
     const {user} = useContext(Context)
@@ -83,6 +84,9 @@ const ProfilePage = observer(() => {
                     
                 </div>
                 
+            </div>
+            <div className={cl.qestionBtnSection}>
+                <Mainbutton>ПЕРЕЙТИ К ВОПРОСАМ</Mainbutton>
             </div>
             <div>
                 <div className={cl.column}>

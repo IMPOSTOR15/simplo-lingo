@@ -24,7 +24,6 @@
     width: 30%;
     border: 1px solid #ff6423;
     border-radius: 10px;
-    /* align-items: center; */
     background-color: #292e33;
 }
 .cardHeader {
@@ -91,6 +90,10 @@
     border-radius: 50%;
 }
 
+.circleWrapper {
+    position: relative;
+}
+
 .randCircle {
     display: flex;
     align-items: center;
@@ -106,15 +109,14 @@
 }
 
 .scoreStr {
-    font-size: 2rem;
-    position: absolute;
-    color: #fff;
-    text-align: center;
-    top: 50%;
-    bottom: auto;
-    width: 100%;
-    align-self: center;
     margin: 0;
+    position: absolute;   
+    top: 50%;                    
+    transform: translate(0, -50%);
+    text-align: center;
+    width: 100%;
+    font-size: 2rem;
+    color: #fff;
 }
 .lastQestions {
     display: flex;
@@ -150,5 +152,8 @@
     }
     .randCircle { 
         margin: 20px auto;
+    }
+    .scoreStr {
+        top: 54%;
     }
 }

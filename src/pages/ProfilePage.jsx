@@ -5,34 +5,51 @@ import { Context } from '..';
 import { observer } from 'mobx-react-lite';
 import { HOME_ROUTE } from '../utils/consts';
 import { useNavigate } from 'react-router-dom';
-
+import baseprofileimg from '../assets/profileMockup.png'
+import EditProfileModal from '../components/profileComponents/EditProfileModal';
 
 const ProfilePage = observer(() => {
     const {user} = useContext(Context)
     const navigate = useNavigate()
-
     const [userData, setUserData] = useState({})
+    const [showEdit, setShowEdit] = useState(false)
 
     useEffect(() => {
         async function fetchData() {
-            // setUserData(await getUserData(localStorage.getItem('user_id')))
-            console.log(user.user.id);
-            setUserData(await getUserData(user.user.id))
+            let userid
+            if (user.user.id) {
+                userid = user.user.id
+            } else {
+                userid = localStorage.getItem('user_id')
+            }
+            console.log(userid);
+            setUserData(await getUserData(userid))
         }
         fetchData();
-    }, []);
+    }, [showEdit, user.user.id]);
 
     const logOut = () => {
         user.setUser({})
         user.setIsAuth(false)
         navigate(HOME_ROUTE)
     }
+    const showEditModal = () => {
+        setShowEdit(true)
+    }
     
     return (
+        
         <div className={cl.mainWrapper}>
+            {/* {showEdit && } */}
+            <EditProfileModal show={showEdit} setShow={setShowEdit}/>
             <div className={cl.row}>
                 <div className={cl.logoCard}>
-                    <img className={cl.logoImg} src="https://avatars.githubusercontent.com/u/62654099?v=4" alt="" />
+                    {user.user.avatar ? 
+                        <img className={cl.logoImg} src={process.env.REACT_APP_API_URL + user.user.avatar} alt="" />
+                    :
+                        <img className={cl.logoImg} src={baseprofileimg} alt="" />
+                    }
+                    
                 </div>
                 <div className={cl.card}>   
                     <h2 className={cl.cardHeader}>Информация о профиле</h2>
@@ -52,15 +69,18 @@ const ProfilePage = observer(() => {
                             <p className={cl.infoParagraph}>13</p>
                         </div>
                     </div>
-                    <button className={cl.editBtn}>РЕДАКТИРОВАТЬ</button>
+                    <button className={cl.editBtn} onClick={() => showEditModal()}>РЕДАКТИРОВАТЬ</button>
                     <button className={cl.editBtn} onClick={() => logOut()}>ВЫЙТИ</button>
                 </div>
                 <div className={cl.card}>   
                     <h2 className={cl.cardHeader}>Рейтинг</h2>
-                    <div className={cl.randCircle}>
-                        
+                    <div className={cl.circleWrapper}>
+                        <div className={cl.randCircle}>
+                            
+                        </div>
+                        <p className={cl.scoreStr}>100pts</p>
                     </div>
-                    <p className={cl.scoreStr}>100pts</p>
+                    
                 </div>
                 
             </div>

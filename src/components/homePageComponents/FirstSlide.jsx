@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import cl from './FirstSlide.module.css'
-import Typist from 'react-typist';
 import Typewriter from 'typewriter-effect';
 import Mainbutton from '../UI/Buttons/Mainbutton';
 const FirstSlide = () => {

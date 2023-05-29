@@ -1,0 +1,127 @@
+.mainWrapper {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    color: #fff;
+    width: 90%;
+    justify-content: space-between;
+    vertical-align: middle;
+    /* margin-top: 20px; */
+    padding: 17px 0;
+}
+
+.quizBackgroundEven {
+    background-color: transparent;
+}
+
+.quizBackgroundOdd {
+    background-color: #39414b;
+}
+
+.quizTitle {
+    display: block;
+    box-sizing: border-box;
+    margin: auto 10px;
+    height: 20px;
+    /* margin: 0; */
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    font-size: 19px;
+}
+
+.quizId {
+    margin: 0;
+}
+
+.quizTitleText {
+    margin: 0;
+    line-height: 15px;
+    vertical-align: middle;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: auto;
+    max-width: calc(90vw - 230px);
+}
+.rightSide {
+    display: flex;
+    justify-content: end;
+}
+.quizDiffFlag {
+    width: 100px;
+    height: 30px;
+    border-radius: 10px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 30px;
+    margin-right: 20px;
+}
+.quizDiffEasy {
+    background-color: #11a996;
+}
+.quizDiffMedium {
+    background-color: #ffa116;
+}
+.quizDiffHard {
+    background-color: #ff2a2c;
+}
+.quizButton {
+    cursor: pointer;
+    height: 30px;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    font-size: 15px;
+    margin: auto 20px auto 0;
+    background-color: #ff6423;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+}
+.quizButton:hover {
+    background-color: #894fb0;
+    -webkit-box-shadow: 0px 0px 7px 3px rgba(255, 100, 35, 0.5);
+    -moz-box-shadow: 0px 0px 7px 3px rgba(255, 100, 35, 0.5);
+    box-shadow: 0px 0px 7px 3px #894fb0;
+}
+
+@media (max-width: 820px) {
+    .mainWrapper {
+        width: 100%;
+    }
+    .quizTitle {
+        display: block;
+        box-sizing: border-box;
+        margin: auto 10px;
+        height: 20px;
+        display: flex;
+        flex-direction: row;
+        text-align: center;
+        font-size: 19px;
+    }
+    
+    .quizId {
+        margin: 0;
+    }
+    
+    .quizTitleText {
+        font-size: 14px;
+        max-width: calc(100vw - 130px);
+    }
+    .quizDiffFlag {
+        border-radius: 50%;
+        max-width: 25px;
+        content: '';
+        color: transparent;
+        max-height: 25px;
+        margin-right: 10px;
+    }
+    .quizButton {
+        margin: auto 0;
+        font-weight: normal;
+        font-size: 12px;
+        margin-right: 5px;
+        height: 25px;
+    }
+}

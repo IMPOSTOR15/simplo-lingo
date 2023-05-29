@@ -1,9 +1,7 @@
 import styled, { css, keyframes } from 'styled-components';
-import { NavLink, useLocation } from 'react-router-dom';
-import { useScroll } from 'react-use';
+import { NavLink } from 'react-router-dom';
 
 const darkViolet = '#894fb0';
-const violet = '#d556fe'
 const orange = '#ff6423'
 const lightOrange = '#ff8652'
 

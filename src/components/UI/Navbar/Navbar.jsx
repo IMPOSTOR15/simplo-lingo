@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import logo from '../../../assets/logo.png'; // Путь до логотипа
 import {
     Nav,
@@ -17,25 +17,9 @@ import { observer } from 'mobx-react-lite';
 import { PROFILE_ROUTE } from '../../../utils/consts';
 import { LOGIN_ROUTE } from '../../../utils/consts';
 
-
-const useScrollPosition = () => {
-    
-    const [scrollY, setScrollY] = useState(0);
-    useEffect(() => {
-        const handleScroll = () => setScrollY(window.scrollY);
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
-    return scrollY;
-};
-
 const Navbar = observer(() => {
-    // const { y } = useScroll();
     const {user} = useContext(Context)
-    // console.log(user)
-    const scrollY = useScrollPosition();
-    const location = useLocation();
+    // const location = useLocation();
     const [open, setOpen] = useState(false);
     let navigate = useNavigate();
 
@@ -47,9 +31,9 @@ const Navbar = observer(() => {
             </LogoContainer>
             <Divider/>
             <NavLinks open={open}>
-                <StyledNavLink to="/link1" isActive={() => location.pathname.includes('/link1')}>Link 1</StyledNavLink>
-                <StyledNavLink to="/link2" isActive={() => location.pathname.includes('/link2')}>Link 2</StyledNavLink>
-                <StyledNavLink to="/link3" isActive={() => location.pathname.includes('/link3')}>Link 3</StyledNavLink>
+                <StyledNavLink to="/link1">Link 1</StyledNavLink>
+                <StyledNavLink to="/link2">Link 2</StyledNavLink>
+                <StyledNavLink to="/link3">Link 3</StyledNavLink>
             </NavLinks>
             {
 

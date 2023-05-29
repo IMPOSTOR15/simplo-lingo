@@ -18,11 +18,16 @@ export const login = async (email, password) => {
 }
 
 export const check = async () => {
-    const {data} = await $authHost.get('api/user/auth')
-    // console.log(data);
-    localStorage.setItem('token', data.token)
-    localStorage.setItem('user_id', jwtDecode(data.token).id)
-    return jwtDecode(data.token)
+    try {
+        const {data} = await $authHost.get('api/user/auth')
+        localStorage.setItem('token', data.token)
+        localStorage.setItem('user_id', jwtDecode(data.token).id)
+        return jwtDecode(data.token)
+    } catch (e) {
+        console.log(e);
+    }
+        
+    
 }
 export const editUser = async (user) => {
     const {data} = await $host.post('api/user/edituser', user)

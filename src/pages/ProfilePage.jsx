@@ -3,7 +3,7 @@ import cl from "../components/profileComponents/ProfilePage.module.css"
 import { getUserData } from '../http/userAPI';
 import { Context } from '..';
 import { observer } from 'mobx-react-lite';
-import { HOME_ROUTE } from '../utils/consts';
+import { HOME_ROUTE, QUIZE_ROUTE } from '../utils/consts';
 import { useNavigate } from 'react-router-dom';
 import baseprofileimg from '../assets/profileMockup.png'
 import EditProfileModal from '../components/profileComponents/EditProfileModal';
@@ -32,6 +32,9 @@ const ProfilePage = observer(() => {
     const logOut = () => {
         user.setUser({})
         user.setIsAuth(false)
+        localStorage.removeItem('user_id')
+        localStorage.removeItem('auth')
+        localStorage.removeItem('token')
         navigate(HOME_ROUTE)
     }
     const showEditModal = () => {
@@ -86,7 +89,7 @@ const ProfilePage = observer(() => {
                 
             </div>
             <div className={cl.qestionBtnSection}>
-                <Mainbutton>ПЕРЕЙТИ К ВОПРОСАМ</Mainbutton>
+                <Mainbutton onClick={()=> navigate(QUIZE_ROUTE)} >ПЕРЕЙТИ К ВОПРОСАМ</Mainbutton>
             </div>
             <div>
                 <div className={cl.column}>

@@ -18,11 +18,11 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    -webkit-box-shadow: 4px 4px 8px 0px rgba(255, 100, 35, 0.2);
-    -moz-box-shadow: 4px 4px 8px 0px rgba(255, 100, 35, 0.2);
-    box-shadow: 4px 4px 8px 0px rgba(255, 100, 35, 0.2);
+    -webkit-box-shadow: 3px 3px 8px 0px rgba(255, 100, 35, 0.5);
+    -moz-box-shadow: 3px 3px 8px 0px rgba(255, 100, 35, 0.5);
+    box-shadow: 3px 3px 8px 0px rgba(255, 100, 35, 0.5);
     width: 30%;
-    border: 1px solid #ff6423;
+    border: 2px solid #ff6523dc;
     border-radius: 10px;
     background-color: #292e33;
 }
@@ -64,14 +64,16 @@
 
 }
 .infoColumn {
-
+    /* border: 1px solid orange; */
 }
 .infoRow {
-
+    
 }
 
 .infoParagraph {
-
+    /* padding: 2px; */
+    padding-bottom: 2px;
+    border-bottom: 2px solid #ff6523dc;
 }
 
 .logoCard {

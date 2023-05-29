@@ -14,12 +14,16 @@ export const scrollDown = keyframes`
 `;
 
 export const Nav = styled.nav`
+    position fixed;
+    top: 0;
     background: ${darkViolet};
+    opacity: 0.9;
     display: flex;
-    // justify-content: space-between;
-    padding: 1rem;
+    padding: 0.8rem;
     color: #fff;
-    position: relative;
+    width: 100%;
+    z-index: 3;
+    
 `;
 
 export const LogoContainer = styled.div`
@@ -104,6 +108,7 @@ export const BurgerMenuButton = styled.button`
     display: none;
     color: #fff;
     font-size: 1.5rem;
+    margin-right: 20px;
     @media (max-width: 768px) {
         display: block;
         background: transparent;
@@ -122,11 +127,12 @@ export const LoginButton = styled.button`
     border: none;
     padding: 0.5rem 1rem;
     color: #fff;
-    width: 200px;
+    width: 220px;
     cursor: pointer;
     // font-size: 12px;
     border-radius: 20px;
     transition: background 0.3s ease-in-out;
+    margin-right: 20px;
     &:hover {
         background: ${lightOrange};
         animation: ${ButtonAnimation} 0.6s ease-in-out;

@@ -42,7 +42,7 @@ const Navbar = observer(() => {
     return (
         <Nav>
             <LogoContainer onClick={()=> navigate("/")}>
-                <LogoImage src={logo} alt="logo" scrollY={scrollY} />
+                <LogoImage src={logo} alt="logo"/>
                 <Logo>SimploLingo</Logo>
             </LogoContainer>
             <Divider/>

@@ -25,7 +25,6 @@ const EditProfileModal = observer(({show, setShow}) => {
         }
         
     }, [show])
-
     const selectFile = e => {
         setfile(e.target.files[0])
     }
@@ -71,11 +70,12 @@ const EditProfileModal = observer(({show, setShow}) => {
                         className={cl.uploadPhotoLabel}
                         htmlFor="upload-photo"
                     >
-                        Загрузить аватар
+                        {file?.name ?? "Загрузите аватар"}
                     </label>
                     <input
                         type='file'
                         id="upload-photo"
+                        accept=".jpeg, .jpg, .gif, .png"
                         className={cl.modalPhotoInput}
                         onChange={selectFile}
                     />

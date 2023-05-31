@@ -1,52 +1,28 @@
 import { observer } from 'mobx-react-lite';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import cl from '../components/quizPageComponents/QuizPage.module.css'
 import ThemeRow from '../components/quizPageComponents/ThemeRow';
 import QuizListItem from '../components/quizPageComponents/QuizListItem';
+import { getAllQestions } from '../http/qestionApi';
 const quizPage = observer(() => {
-    const quizSmaple = [
-        {
-            id: '1',
-            title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, amet.',
-            dificulty: 'easy'
-        },
-        {
-            id: '2',
-            title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, amet.',
-            dificulty: 'medium'
-        },
-        {
-            id: '3',
-            title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, amet.',
-            dificulty: 'easy'
-        },
-        {
-            id: '4',
-            title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, amet.',
-            dificulty: 'easy'
-        },
-        {
-            id: '5',
-            title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, amet.',
-            dificulty: 'medium'
-        },
-        {
-            id: '6',
-            title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, amet.',
-            dificulty: 'hard'
-        },
-    ]
+    const [quizArr, setQuizArr] = useState([])
+    useEffect(() => {
+        getAllQestions().then(
+            data => setQuizArr(data)
+        )
+    }, [])
     return (
         <div className={cl.mainWrapper}>
             <h1 className={cl.headerText}>СПИСОК ВОПРОСОВ</h1>
             <ThemeRow/>
             {
-                quizSmaple.map((quiz) =>
+                quizArr.map((quiz,index) =>
                     <QuizListItem
                         key={quiz.id}
+                        index={index}
                         id={quiz.id}
-                        title={quiz.title}
-                        dificulty={quiz.dificulty}
+                        title={quiz.text}
+                        dificulty={quiz.dificult}
                     />
                 )
             }

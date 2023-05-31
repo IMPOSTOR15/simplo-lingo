@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import logo from '../../../assets/logo.png'; // Путь до логотипа
 import {
     Nav,
@@ -14,14 +14,23 @@ import {
   } from './NavbarElements';
 import { Context } from '../../..';
 import { observer } from 'mobx-react-lite';
-import { PROFILE_ROUTE } from '../../../utils/consts';
-import { LOGIN_ROUTE } from '../../../utils/consts';
+import { HOME_ROUTE, PROFILE_ROUTE, LOGIN_ROUTE } from '../../../utils/consts';
 
 const Navbar = observer(() => {
     const {user} = useContext(Context)
-    // const location = useLocation();
+    const location = useLocation()
+    const isPofile = location.pathname === PROFILE_ROUTE
     const [open, setOpen] = useState(false);
     let navigate = useNavigate();
+
+    const logOut = () => {
+        user.setUser({})
+        user.setIsAuth(false)
+        localStorage.removeItem('user_id')
+        localStorage.removeItem('auth')
+        localStorage.removeItem('token')
+        navigate(HOME_ROUTE)
+    }
 
     return (
         <Nav>
@@ -39,9 +48,12 @@ const Navbar = observer(() => {
 
             }
             {user.isAuth ?
-                <LoginButton onClick={()=> navigate(PROFILE_ROUTE)}>В ПРОФИЛЬ</LoginButton>
+                isPofile ?
+                    <LoginButton onClick={() => logOut()}>ВЫЙТИ</LoginButton>
+                :
+                    <LoginButton onClick={()=> navigate(PROFILE_ROUTE)}>В ПРОФИЛЬ</LoginButton>
             :
-                <LoginButton onClick={()=> navigate(LOGIN_ROUTE)}>Войти</LoginButton>
+                <LoginButton onClick={()=> navigate(LOGIN_ROUTE)}>ВОЙТИ</LoginButton>
             }
             
             <BurgerMenuButton onClick={() => setOpen(!open)}>

@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite';
 import React from 'react';
 import cl from '../components/quizPageComponents/QuizPage.module.css'
 import ThemeRow from '../components/quizPageComponents/ThemeRow';
-import QuizItem from '../components/quizPageComponents/QuizItem';
+import QuizListItem from '../components/quizPageComponents/QuizListItem';
 const quizPage = observer(() => {
     const quizSmaple = [
         {
@@ -42,7 +42,7 @@ const quizPage = observer(() => {
             <ThemeRow/>
             {
                 quizSmaple.map((quiz) =>
-                    <QuizItem
+                    <QuizListItem
                         key={quiz.id}
                         id={quiz.id}
                         title={quiz.title}

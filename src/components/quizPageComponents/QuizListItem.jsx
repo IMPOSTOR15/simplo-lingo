@@ -1,6 +1,10 @@
 import React from 'react';
-import cl from './QuizItem.module.css'
+import cl from './QuizListItem.module.css'
+import { useNavigate } from 'react-router-dom';
+import { QUIZE_ITEM_ROUTE } from '../../utils/consts';
+
 const QuizItem = ({...props}) => {
+    let navigate = useNavigate();
     return (
         <div className={`${cl.mainWrapper} ${props.id % 2 === 0 ? cl.quizBackgroundEven : cl.quizBackgroundOdd}`}>
             <div className={cl.quizTitle}>
@@ -13,7 +17,7 @@ const QuizItem = ({...props}) => {
                         ${props.dificulty === 'medium' ? cl.quizDiffMedium : ''}
                         ${props.dificulty === 'hard' ? cl.quizDiffHard : ''}
                     `}>{props.dificulty}</div>
-                <button className={cl.quizButton}>ОТВЕТИТЬ</button>
+                <button className={cl.quizButton} onClick={()=> navigate(QUIZE_ITEM_ROUTE + '/' + props.id)} >ОТВЕТИТЬ</button>
             </div>
         </div>
     );

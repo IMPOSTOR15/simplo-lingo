@@ -1,11 +1,12 @@
 import LoginPage from "./pages/LoginPage"
 import HomePage from "./pages/HomePage"
-import { HOME_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, PROFILE_ROUTE, QUIZE_ROUTE } from "./utils/consts"
+import { HOME_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, PROFILE_ROUTE, QUIZE_LIST_ROUTE, QUIZE_ITEM_ROUTE } from "./utils/consts"
 import ProfilePage from "./pages/ProfilePage"
 import QuizPage from "./pages/QuizPage"
+import QuizItem from "./components/QuizItemComponents/QuizItem"
 export const authRoutes = [
     {
-        path: QUIZE_ROUTE,
+        path: QUIZE_LIST_ROUTE,
         component: <QuizPage/>
     },
     {
@@ -28,7 +29,11 @@ export const publicRoutes = [
         component: <LoginPage/>
     },
     {
-        path: QUIZE_ROUTE,
+        path: QUIZE_LIST_ROUTE,
         component: <QuizPage/>
+    },
+    {
+        path: QUIZE_ITEM_ROUTE + '/:id',
+        component: <QuizItem/>
     },
 ]

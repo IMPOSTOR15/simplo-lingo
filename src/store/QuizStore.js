@@ -7,7 +7,6 @@ export default class QuizStore {
         this._quizsData = {}
         makeAutoObservable(this)
     }
-
     setCurenQuizId(id) {
         this._curenQuizId = id
     }

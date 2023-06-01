@@ -3,26 +3,28 @@ import { useParams } from 'react-router-dom';
 import cl from './QuizItem.module.css'
 import { getQestionsById } from '../../http/qestionApi';
 import { getQestionAnswers } from '../../http/answersApi';
+import Mainbutton from '../UI/Buttons/Mainbutton';
+import QuizAnswerModal from './QuizAnswerModal';
 const QuizItem = () => {
     const {id} = useParams()
+    const [showModal, setShowModal] = useState({})
     const [quizData, setQuizData] = useState({})
     const [answers, setAnswers] = useState([])
-    const quizExample = {
-        id: '14',
-        title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, non.',
-        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, dolores eum. Illo facere nulla nam? Tenetur laboriosam reiciendis nesciunt provident!',
-        answers: ['Answer 1', 'Answer 2', 'Answer 3','Answer 4'],
-    }
+    const [pikedAnswer, setPikedAnswer] = useState({})
     useEffect(() => {
         getQestionsById(id).then(data => setQuizData(data))
         getQestionAnswers(id).then(data => setAnswers(data))
     }, [])
+    // useEffect(() => {
+    //     console.log(pikedAnswer);
+    // }, [pikedAnswer])
 
     // useEffect(() => {
     //     fetchOneQuiz(id).then(data => setQuiz(data))
     // }, [])
     return (
         <div className={cl.mainWrapper}>
+            <QuizAnswerModal show={showModal} setShow={setShowModal}/>
             <div className={cl.quizCard}>
                 <h2 className={cl.quizTitle}>{quizData.id}. {quizData.title}</h2>
                 <p className={cl.quizDescription}>{quizData.text}</p>
@@ -30,9 +32,10 @@ const QuizItem = () => {
             <div className={cl.devider}></div>
             <div className={cl.answerBar}>
                 {answers.map((answer, index) => 
-                    <div key={index} className={cl.answerWrapper}>{answer.answer}</div>
+                    <div key={index} className={`${cl.answerWrapper} ${answers[index]?.id === pikedAnswer?.id ? cl.answerWrapperActive : ""}`} onClick={()=> setPikedAnswer(answers[index])}>{answer.answer}</div>
                 )}
             </div>
+            <button className={cl.AnswerBtn} onClick={() => {setShowModal(true)}}>ОТВЕТИТЬ</button>
         </div>
     );
 };

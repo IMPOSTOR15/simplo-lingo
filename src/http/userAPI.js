@@ -26,8 +26,6 @@ export const check = async () => {
     } catch (e) {
         console.log(e);
     }
-        
-    
 }
 export const editUser = async (user) => {
     const {data} = await $host.post('api/user/edituser', user)

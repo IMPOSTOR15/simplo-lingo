@@ -34,8 +34,8 @@
 
 .modalBody {
     display: flex;
-    flex-direction: column;
-    padding: 10px;
+    /* flex-direction: column; */
+    /* padding: 10px; */
     border-top: 1px solid #494949;
     border-bottom: 1px solid #494949;
 }
@@ -100,7 +100,7 @@
 }
 
 
-.editButton {
+.modalButton {
     width: 120px;
     cursor: pointer;
     border: none;
@@ -113,11 +113,11 @@
     transition: all 0.3s ease-in-out;
 }
   
-.editButton:hover {
+.modalButton:hover {
     box-shadow: 0 0 5px 0.2rem rgba(255, 123, 0, 0.3);
 }
 
-.closeButton {
+.exitButton {
     width: 120px;
     cursor: pointer;
     border: none;
@@ -130,7 +130,7 @@
     transition: all 0.3s ease-in-out;
 }
   
-.closeButton:hover {
+.exitButton:hover {
     box-shadow: 0 0 5px 0.2rem rgb(71, 38, 105);
 }
 

@@ -4,51 +4,46 @@ import cl from './QuizAnswerModal.module.css'
 import { Context } from '../..';
 import SuccesIco from '../UI/SVGIcons/SuccesIco';
 import ErrorIco from '../UI/SVGIcons/ErrorIco';
+import { useNavigate } from 'react-router-dom';
+import { PROFILE_ROUTE } from '../../utils/consts';
 
-const QuizAnswerModal = observer(({show, setShow}) => {
-    const {user} = useContext(Context)
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-    const [file, setfile] = useState(null)
-    useEffect(() => {
-        let userid
-        if (user.user.id) {
-            userid = user.user.id
-        } else {
-            userid = localStorage.getItem('user_id')
-        }
-        
-    }, [show])
-    const selectFile = e => {
-        setfile(e.target.files[0])
-    }
-    useEffect(() => {
+const QuizAnswerModal = observer(({show, setShow, isCorrect}) => {
 
-    }, [])
-
-    
-    
+    const navigate = useNavigate()
     if (!show) {
         return null
+    }
+
+    const toProfile = () => {
+        setShow(false)
+        navigate(PROFILE_ROUTE)
     }
 
     return (
         <div className={cl.modal}>
             <div className={cl.modalContent}>
                 <div className={cl.modalHeader}>
-                    РЕДАКТИРОВАТЬ ПРОФИЛЬ
+                    { isCorrect ?
+                        "ПРАВИЛЬНО"
+                        :
+                        "НЕВЕРНО"
+                    }
                 </div>
                 <div className={cl.modalBody}>
-                    <SuccesIco/>
-                    <ErrorIco/>
-
-                </div>
-                <div className={cl.modalFooter}>
-                    <button className={cl.modalButton} onClick={() => setShow(false)}>В профиль</button>
-                    <button className={cl.modalButton} onClick={() => setShow(false)}>Перейти к следующему</button>
+                    <div className={cl.icoAnim}>
+                    { isCorrect ?
+                        <SuccesIco/>
+                        :
+                        <ErrorIco/>
+                    }
+                    </div>
                     
                 </div>
-                <button className={cl.exitButton} onClick={() => setShow(false)}>Закрыть</button>
+                <div className={cl.modalFooter}>
+                    <button className={cl.modalButton} onClick={() => setShow(false)}>СЛЕДУЮЩИЙ</button>
+                    <button className={cl.exitButton} onClick={() => toProfile()}>ПРОФИЛЬ</button>
+                </div>
+                
             </div>
         </div>
     );

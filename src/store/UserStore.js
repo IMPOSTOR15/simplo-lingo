@@ -5,6 +5,7 @@ export default class UserStore {
         this._isAuth = false
         this._user = {}
         this._userData = {}
+        this._userRating = {}
         makeAutoObservable(this)
     }
 
@@ -17,6 +18,9 @@ export default class UserStore {
     setUserData(user_data) {
         this._userData = user_data
     }
+    setUserRating(userRating) {
+        this._userRating = userRating
+    }
 
     get userData() {
         return this._userData
@@ -26,5 +30,8 @@ export default class UserStore {
     }
     get user() {
         return this._user
+    }
+    get userRating() {
+        return this._userRating
     }
 }

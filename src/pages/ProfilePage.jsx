@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import baseprofileimg from '../assets/profileMockup.png'
 import EditProfileModal from '../components/profileComponents/EditProfileModal';
 import Mainbutton from '../components/UI/Buttons/Mainbutton';
+import { getUserRating } from '../http/ratingApi';
 
 const ProfilePage = observer(() => {
     const {user} = useContext(Context)
@@ -25,10 +26,11 @@ const ProfilePage = observer(() => {
             }
             console.log(userid);
             setUserData(await getUserData(userid))
-        }
+            getUserRating(userid).then(data => {user.setUserRating(data)})
+            
+        }   
         fetchData();
     }, [showEdit, user.user.id]);
-
     const logOut = () => {
         user.setUser({})
         user.setIsAuth(false)
@@ -38,13 +40,12 @@ const ProfilePage = observer(() => {
         navigate(HOME_ROUTE)
     }
     const showEditModal = () => {
+        console.log("userRating", user.userRating);
         setShowEdit(true)
     }
     
     return (
-        
         <div className={cl.mainWrapper}>
-            {/* {showEdit && } */}
             <EditProfileModal show={showEdit} setShow={setShowEdit}/>
             <div className={cl.row}>
                 <div className={cl.logoCard}>
@@ -53,7 +54,6 @@ const ProfilePage = observer(() => {
                     :
                         <img className={cl.logoImg} src={baseprofileimg} alt="" />
                     }
-                    
                 </div>
                 <div className={cl.card}>   
                     <h2 className={cl.cardHeader}>Информация о профиле</h2>
@@ -69,7 +69,7 @@ const ProfilePage = observer(() => {
                             <p className={cl.infoParagraph}>{userData.name ? userData.name : "ошибка"}</p>
                             <p className={cl.infoParagraph}>{userData.email}</p>
                             <p className={cl.infoParagraph}>5</p>
-                            <p className={cl.infoParagraph}>120</p>
+                            <p className={cl.infoParagraph}>{user.userRating.total_solved}</p>
                             <p className={cl.infoParagraph}>13</p>
                         </div>
                     </div>
@@ -82,11 +82,9 @@ const ProfilePage = observer(() => {
                         <div className={cl.randCircle}>
                             
                         </div>
-                        <p className={cl.scoreStr}>100pts</p>
+                        <p className={cl.scoreStr}>{user.userRating.points} pts</p>
                     </div>
-                    
                 </div>
-                
             </div>
             <div className={cl.qestionBtnSection}>
                 <Mainbutton onClick={()=> navigate(QUIZE_LIST_ROUTE)} >ПЕРЕЙТИ К ВОПРОСАМ</Mainbutton>

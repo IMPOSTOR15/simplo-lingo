@@ -2,8 +2,9 @@
     display: flex;
     width: 80%;
     max-width: 1000px;
-    margin: 25% auto 0 auto;
+    margin: 40vh auto 0 auto;
     border: 2px solid #ff6423;
+    background-color: #4a546136;
     border-radius: 20px;
     flex-direction: column;
     color: #fff;
@@ -72,7 +73,7 @@
     font-weight: bold;
     border: none;
     font-size: 15px;
-    margin: 20px auto 20px auto;
+    margin: 40px auto 20px auto;
     color: #fff;
     background: linear-gradient(90deg, rgba(255,100,35,1) 0%, rgba(124,0,255,1) 85%);
     border-radius: 10px;
@@ -82,4 +83,10 @@
     -webkit-box-shadow: 0px 0px 7px 3px rgba(255, 100, 35, 0.5);
     -moz-box-shadow: 0px 0px 7px 3px rgba(255, 100, 35, 0.5);
     box-shadow: 0px 0px 7px 3px rgba(255, 100, 35, 0.5);
+}
+
+@media (max-width: 768px) {
+    .mainWrapper {
+        margin-top: 20%;
+    }
 }

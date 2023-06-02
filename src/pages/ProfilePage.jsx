@@ -15,22 +15,14 @@ const ProfilePage = observer(() => {
     const navigate = useNavigate()
     const [userData, setUserData] = useState({})
     const [showEdit, setShowEdit] = useState(false)
-
+    const [pieRatingValue, setPieRatingValue] = useState(0)
     useEffect(() => {
-        async function fetchData() {
-            let userid
-            if (user.user.id) {
-                userid = user.user.id
-            } else {
-                userid = localStorage.getItem('user_id')
-            }
-            console.log(userid);
-            setUserData(await getUserData(userid))
-            getUserRating(userid).then(data => {user.setUserRating(data)})
-            
-        }   
+        setPieRatingValue(user.userRating.points / 10)
+    },)
+    useEffect(() => {
         fetchData();
     }, [showEdit, user.user.id]);
+       
     const logOut = () => {
         user.setUser({})
         user.setIsAuth(false)
@@ -40,10 +32,20 @@ const ProfilePage = observer(() => {
         navigate(HOME_ROUTE)
     }
     const showEditModal = () => {
-        console.log("userRating", user.userRating);
         setShowEdit(true)
     }
-    
+
+    async function fetchData() {
+        let userid
+        if (user.user.id) {
+            userid = user.user.id
+        } else {
+            userid = localStorage.getItem('user_id')
+        }
+        console.log(userid);
+        setUserData(await getUserData(userid))
+        getUserRating(userid).then(data => {user.setUserRating(data)})
+    }
     return (
         <div className={cl.mainWrapper}>
             <EditProfileModal show={showEdit} setShow={setShowEdit}/>
@@ -79,11 +81,12 @@ const ProfilePage = observer(() => {
                 <div className={cl.card}>   
                     <h2 className={cl.cardHeader}>Рейтинг</h2>
                     <div className={cl.circleWrapper}>
-                        <div className={cl.randCircle}>
-                            
+                        <div className={cl.randCircle} style={{'--pie-p': `${pieRatingValue + '%'}`}}>
+                        <div className={cl.randCircleInset}></div>
                         </div>
                         <p className={cl.scoreStr}>{user.userRating.points} pts</p>
                     </div>
+                    <p className={cl.cardHeader}>До следующего уровня {1000 - user.userRating.points} pts</p>
                 </div>
             </div>
             <div className={cl.qestionBtnSection}>

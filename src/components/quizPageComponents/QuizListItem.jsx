@@ -11,13 +11,17 @@ const QuizItem = ({...props}) => {
                 <p className={cl.quizTitleText}>{props.id}. {props.title}</p>
             </div>
             <div className={cl.rightSide}>
+                {props.isSolved &&
+                    <div className={cl.solvedMark}>✓</div>
+                }
+                
                 <div
                     className={` ${cl.quizDiffFlag}
                         ${props.dificulty.includes('easy') ? cl.quizDiffEasy : ''}
                         ${props.dificulty.includes('medium') ? cl.quizDiffMedium : ''}
                         ${props.dificulty.includes('hard') ? cl.quizDiffHard : ''}
                     `}>{props.dificulty}</div>
-                <button className={cl.quizButton} onClick={()=> navigate(QUIZE_ITEM_ROUTE + '/' + props.id)} >ОТВЕТИТЬ</button>
+                <button className={props.isSolved ? cl.solvedQuizButton :cl.quizButton} onClick={()=> navigate(QUIZE_ITEM_ROUTE + '/' + props.id)} >{props.isSolved ? "ОТКРЫТЬ" : props.buttonText} </button>
             </div>
         </div>
     );

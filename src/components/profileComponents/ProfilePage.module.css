@@ -134,6 +134,12 @@
     flex-direction: column;
     border-radius: 10px;
 }
+.column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 .qestionCard {
     border: 2px solid orange;

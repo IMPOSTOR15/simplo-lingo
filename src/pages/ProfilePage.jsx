@@ -8,7 +8,9 @@ import { useNavigate } from 'react-router-dom';
 import baseprofileimg from '../assets/profileMockup.png'
 import EditProfileModal from '../components/profileComponents/EditProfileModal';
 import Mainbutton from '../components/UI/Buttons/Mainbutton';
+import QuizListItem from '../components/quizPageComponents/QuizListItem';
 import { getUserRating } from '../http/ratingApi';
+import { getSolvedQuestions } from '../http/qestionApi';
 
 const ProfilePage = observer(() => {
     const {user} = useContext(Context)
@@ -16,7 +18,11 @@ const ProfilePage = observer(() => {
     const [userData, setUserData] = useState({})
     const [showEdit, setShowEdit] = useState(false)
     const [pieRatingValue, setPieRatingValue] = useState(0)
-
+    const [quizArr, setQuizArr] = useState([])
+    // const [sortType, setSortType] = useState('')
+    useEffect(() => {
+        
+    }, [])
     useEffect(() => {
         fetchData();
     }, [showEdit, user.user.id]);
@@ -43,10 +49,18 @@ const ProfilePage = observer(() => {
         
         console.log(userid);
         setUserData(await getUserData(userid))
-        getUserRating(userid).then(data => {
-            user.setUserRating(data)
-            setPieRatingValue(data.points / 10)
-        })
+        getUserRating(userid).then(
+            data => {
+                user.setUserRating(data)
+                setPieRatingValue(data.points / 10)
+            }
+        )
+        getSolvedQuestions(userid).then(
+            data => {
+                console.log(data.reverse());
+                setQuizArr(data)
+            }
+        )
     }
     return (
         <div className={cl.mainWrapper}>
@@ -97,7 +111,19 @@ const ProfilePage = observer(() => {
             <div>
                 <div className={cl.column}>
                     <h2 className={cl.cardHeader}>Последнии решенные вопросы</h2>
-                    <div className={cl.lastQestions}>
+                    {
+                        quizArr.map((quiz,index) =>
+                            <QuizListItem
+                                key={quiz.id}
+                                index={index}
+                                id={quiz.id}
+                                title={quiz.title}
+                                dificulty={quiz.dificult}
+                                buttonText={'ОТКРЫТЬ'}
+                            />
+                        )
+                    }
+                    {/* <div className={cl.lastQestions}>
                         <div className={cl.qestionCard}>1. Who will win?</div>
                         <div className={cl.qestionCard}>2. Who will lose?</div>
                         <div className={cl.qestionCard}>3. Who will draw?</div>
@@ -110,7 +136,7 @@ const ProfilePage = observer(() => {
                         <div className={cl.qestionCard}>1. Who will win?</div>
                         <div className={cl.qestionCard}>2. Who will lose?</div>
                         <div className={cl.qestionCard}>3. Who will draw?</div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

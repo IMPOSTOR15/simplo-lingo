@@ -6,9 +6,13 @@ import QuizListItem from '../components/quizPageComponents/QuizListItem';
 import { getAllQestions } from '../http/qestionApi';
 const quizPage = observer(() => {
     const [quizArr, setQuizArr] = useState([])
+    // const [sortType, setSortType] = useState('')
     useEffect(() => {
         getAllQestions().then(
-            data => setQuizArr(data)
+            data => {
+                console.log(data);
+                setQuizArr(data.sort((a,b) => a.id - b.id))
+            }
         )
     }, [])
     return (

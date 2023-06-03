@@ -16,9 +16,7 @@ const ProfilePage = observer(() => {
     const [userData, setUserData] = useState({})
     const [showEdit, setShowEdit] = useState(false)
     const [pieRatingValue, setPieRatingValue] = useState(0)
-    useEffect(() => {
-        setPieRatingValue(user.userRating.points / 10)
-    },)
+
     useEffect(() => {
         fetchData();
     }, [showEdit, user.user.id]);
@@ -42,9 +40,13 @@ const ProfilePage = observer(() => {
         } else {
             userid = localStorage.getItem('user_id')
         }
+        
         console.log(userid);
         setUserData(await getUserData(userid))
-        getUserRating(userid).then(data => {user.setUserRating(data)})
+        getUserRating(userid).then(data => {
+            user.setUserRating(data)
+            setPieRatingValue(data.points / 10)
+        })
     }
     return (
         <div className={cl.mainWrapper}>

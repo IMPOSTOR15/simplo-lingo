@@ -13,8 +13,35 @@
     width: 90%;
     margin: auto;
 }
-.quizTitle {
 
+.quizNavigationWrapeer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.quizNavButton {
+    cursor: pointer;
+    border: 0;
+    background-color: transparent;
+    margin: 10px 40px 0 40px;
+    padding: 5px;
+    text-align: center;
+    font-weight: bold;
+    color: #748294;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+.quizNavButton:hover {
+    border: 2px solid #748294;
+    border-radius: 10px;
+}
+
+.quizTitle {
+    margin: 10px 0;
 }
 .quizDescription {
 
@@ -65,7 +92,13 @@
     -moz-box-shadow: 0px 0px 7px 3px rgba(255, 100, 35, 0.5);
     box-shadow: 0px 0px 7px 3px #894fb0;
 }
-
+.correctAnswer {
+    background-color: green;
+}
+.correctAnswer:hover {
+    background-color: green;
+    box-shadow: none;
+}
 .AnswerBtn {
     min-width: 40%;
     cursor: pointer;
@@ -84,6 +117,16 @@
     -moz-box-shadow: 0px 0px 7px 3px rgba(255, 100, 35, 0.5);
     box-shadow: 0px 0px 7px 3px rgba(255, 100, 35, 0.5);
 }
+
+.AnswerBtnInactive {
+    cursor: not-allowed;
+    background: rgb(88, 88, 88);
+    transition: none;
+}
+.AnswerBtnInactive:hover {
+    box-shadow: none;
+}
+
 
 @media (max-width: 768px) {
     .mainWrapper {

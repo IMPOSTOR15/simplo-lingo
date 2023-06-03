@@ -1,0 +1,14 @@
+.noDataWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 20vh;
+}
+.noDataImg {
+    width: 96px;
+    margin: auto;
+}
+.noDataHeader {
+    color: #fff;
+    text-align: center;
+}

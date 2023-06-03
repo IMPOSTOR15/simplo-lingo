@@ -5,12 +5,14 @@
 .themeHeader {
     color: #fff;
     text-align: left;
+    padding: 0 10px;
 }
 .tehemeRow {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     padding-bottom: 20px;
+    
     border-bottom: 2px solid #ff6423;
 }
 
@@ -25,12 +27,16 @@
     margin-right: 20px;
     margin-bottom: 10px;
     transition: all 0.3s ease-in-out;
+    border: 3px solid transparent;
 }
 .themeBtn:hover {
-    background-color: #894fb0;
+    border: 3px solid #894fb0;
     -webkit-box-shadow: 0px 0px 7px 3px rgba(255, 100, 35, 0.5);
     -moz-box-shadow: 0px 0px 7px 3px rgba(255, 100, 35, 0.5);
     box-shadow: 0px 0px 7px 3px #894fb0;
+}
+.activeBtn {
+    background-color: #894fb0;
 }
 .themeBtnAll {
     cursor: pointer;
@@ -41,6 +47,7 @@
     padding: 7px;
     border-radius: 10px;
     margin-bottom: 10px;
+    margin-right: 20px;
     transition: all 0.3s ease-in-out;
 }
 
@@ -49,6 +56,26 @@
     -webkit-box-shadow: 0px 0px 7px 3px rgb(100, 100, 100);
     -moz-box-shadow: 0px 0px 7px 3px rgb(100, 100, 100);
     box-shadow: 0px 0px 7px 3px rgb(100, 100, 100);
+}
+.diffucultSelect {
+    cursor: pointer;
+    width: 180px;
+    height: 38px;
+    background-color: rgb(100, 100, 100);
+    border: 2px solid transparent;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.diffucultSelect:hover {
+    -webkit-box-shadow: 0px 0px 7px 3px rgba(255, 100, 35, 0.5);
+    -moz-box-shadow: 0px 0px 7px 3px rgba(255, 100, 35, 0.5);
+    box-shadow: 0px 0px 7px 3px rgba(255, 100, 35, 0.5);
+}
+.diffucultSelect:focus {
+    border: 2px solid #ff6423;
 }
 
 @media (max-width: 820px) {

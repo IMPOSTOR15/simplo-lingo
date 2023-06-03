@@ -3,11 +3,14 @@ import React, { useContext, useEffect, useState } from 'react';
 import cl from '../components/quizPageComponents/QuizPage.module.css'
 import ThemeRow from '../components/quizPageComponents/ThemeRow';
 import QuizListItem from '../components/quizPageComponents/QuizListItem';
-import { getAllQestions, getQuestionsFilterBySolved, getSolvedQuestions } from '../http/qestionApi';
+import { getQuestionsFilterBySolvedAndTheme } from '../http/qestionApi';
 import { Context } from '..';
+import NoData from '../components/UI/NotFound/NoData';
 const quizPage = observer(() => {
     const [quizArr, setQuizArr] = useState([])
     const {user} = useContext(Context)
+    const [theme, setTheme] = useState('')
+    const [dificult, setDificult] = useState('')
     // const [sortType, setSortType] = useState('')
     useEffect(() => {
         let userid
@@ -16,20 +19,26 @@ const quizPage = observer(() => {
         } else {
             userid = localStorage.getItem('user_id')
         }
-
-        getQuestionsFilterBySolved(userid).then(
+        getQuestionsFilterBySolvedAndTheme(userid, dificult, theme).then(
             data => {
                 console.log(data);
-                setQuizArr(data.sort((a,b) => a.id - b.id))
+                setQuizArr(data.rows.sort((a,b) => a.id - b.id))
+                console.log(quizArr);
             }
         )
-    }, [])
+    }, [user.user.id, dificult, theme])
     return (
         <div className={cl.mainWrapper}>
             <h1 className={cl.headerText}>СПИСОК ВОПРОСОВ</h1>
-            <ThemeRow/>
-            {
-                quizArr.map((quiz,index) =>
+            <ThemeRow
+                theme={theme}
+                setTheme={setTheme}
+                dificult={dificult}
+                setDificult={setDificult}
+            
+            />
+            {quizArr.length !== 0 ?
+                (quizArr.map((quiz,index) =>
                     <QuizListItem
                         key={quiz.id}
                         index={index}
@@ -39,8 +48,11 @@ const quizPage = observer(() => {
                         isSolved={quiz.solvedByUser}
                         buttonText={'ОТВЕТИТЬ'}
                     />
-                )
+                ))
+                :
+                <NoData/>
             }
+            
         </div>
     );
 });

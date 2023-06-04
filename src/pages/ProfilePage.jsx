@@ -12,6 +12,7 @@ import QuizListItem from '../components/quizPageComponents/QuizListItem';
 import { getUserRating } from '../http/ratingApi';
 import { getSolvedQuestions } from '../http/qestionApi';
 import LoadingIndicator from '../components/UI/Loading/LoadingIndicator';
+import RatingDonut from '../components/profileComponents/RatingDonut';
 
 const ProfilePage = observer(() => {
     const [isLoading, setIsLoading] = useState(true)
@@ -88,27 +89,23 @@ const ProfilePage = observer(() => {
                                 <p className={cl.infoParagraph}>e-mail:</p>
                                 <p className={cl.infoParagraph}>Уровень:</p>
                                 <p className={cl.infoParagraph}>Решено вопросов:</p>
-                                {/* <p className={cl.infoParagraph}>Дней подряд:</p> */}
                             </div>
                             <div className={cl.infoRow}>
                                 <p className={cl.infoParagraph}>{userData.name ? userData.name : "ошибка"}</p>
                                 <p className={cl.infoParagraph}>{userData.email}</p>
                                 <p className={cl.infoParagraph}>{Math.floor(user.userRating.points/1000) + 1}</p>
                                 <p className={cl.infoParagraph}>{user.userRating.total_solved}</p>
-                                {/* <p className={cl.infoParagraph}>13</p> */}
                             </div>
                         </div>
                         <button className={cl.editBtn} onClick={() => showEditModal()}>РЕДАКТИРОВАТЬ</button>
                         <button className={cl.editBtn} onClick={() => logOut()}>ВЫЙТИ</button>
                     </div>
-                    <div className={cl.card}>   
+                    <div className={cl.card}>
                         <h2 className={cl.cardHeader}>Рейтинг</h2>
-                        <div className={cl.circleWrapper}>
-                            <div className={cl.randCircle} style={{'--pie-p': `${pieRatingValue + '%'}`}}>
-                            <div className={cl.randCircleInset}></div>
-                            </div>
-                            <p className={cl.scoreStr}>{user.userRating.points} pts</p>
-                        </div>
+                        <RatingDonut
+                            pieRatingValue={pieRatingValue}
+                            points={user.userRating.points}
+                        />
                         <p className={cl.cardHeader}>До следующего уровня {1000 - user.userRating.points} pts</p>
                     </div>
                 </div>

@@ -1,0 +1,19 @@
+.mainWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+    margin: 7vh auto 0 auto;
+}
+.leaderboardHeader {
+    text-align: center;
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .mainWrapper {
+        width: 100%;
+        margin: 7vh auto 0 auto;
+    }
+    
+}

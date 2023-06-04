@@ -14,7 +14,7 @@ import {
   } from './NavbarElements';
 import { Context } from '../../..';
 import { observer } from 'mobx-react-lite';
-import { HOME_ROUTE, PROFILE_ROUTE, LOGIN_ROUTE } from '../../../utils/consts';
+import { HOME_ROUTE, PROFILE_ROUTE, LOGIN_ROUTE, LEADERBOARD_ROUTE } from '../../../utils/consts';
 
 const Navbar = observer(() => {
     const {user} = useContext(Context)
@@ -40,9 +40,9 @@ const Navbar = observer(() => {
             </LogoContainer>
             <Divider/>
             <NavLinks open={open}>
-                <StyledNavLink to="/link1">Link 1</StyledNavLink>
-                <StyledNavLink to="/link2">Link 2</StyledNavLink>
-                <StyledNavLink to="/link3">Link 3</StyledNavLink>
+                <StyledNavLink onClick={() => setOpen(false)} to="/link1">Link 1</StyledNavLink>
+                <StyledNavLink onClick={() => setOpen(false)} to="/link2">Link 2</StyledNavLink>
+                <StyledNavLink onClick={() => setOpen(false)} to={LEADERBOARD_ROUTE}>СПИСОК ЛИДЕРОВ</StyledNavLink>
             </NavLinks>
             {
 

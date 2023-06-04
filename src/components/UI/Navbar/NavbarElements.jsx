@@ -57,13 +57,11 @@ export const Logo = styled.div`
     font-size: 1.5rem;
     font-weight: bold;
     @media (max-width: 768px) {
-        // display: none;
         font-size: 1.2rem;
     }
 `;
 
 export const NavLinks = styled.div`
-    // display: none;
     width: 100%;
     display: flex;
     justify-content: start;
@@ -80,7 +78,6 @@ export const NavLinks = styled.div`
         transform: ${({ open }) => open ? 'translateY(0)' : 'translateY(-100%)'};
         opacity: ${({ open }) => open ? '1' : '0'};
         z-index: ${({ open }) => open ? '1' : '-1'};
-        // z-index: 1;
     }
 `;
 
@@ -90,8 +87,9 @@ export const StyledNavLink = styled(NavLink)`
     width: auto;
     position: relative;
     margin auto 20px;
-    // justify-content: center;
     text-align: center;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease-in-out;
     &.active {
         border-bottom: 2px solid #ff6423;
     }

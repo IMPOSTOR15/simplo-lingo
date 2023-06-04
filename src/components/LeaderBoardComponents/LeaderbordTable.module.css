@@ -1,0 +1,50 @@
+.mainWrapper {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    
+}
+.infoRow {
+    display: flex;
+    flex-direction: row;
+    color: #fff;
+    font-weight: bold;
+}
+.placeText {
+    width: 40px;
+    margin: auto 20px auto 10px;
+}
+.userText {
+    margin: auto auto auto 0;
+}
+.taskText {
+    width: 80px;
+    margin: auto 10px;
+}
+.pointsText {
+    width: 100px;
+    margin: auto 10px;
+}
+
+@media (max-width: 768px) {
+    .mainWrapper {
+        width: 100%;
+        font-size: 14px;
+    }
+    .placeText {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    .userText {
+        margin: auto;
+    }
+    .taskText {
+        width: 60px;
+        margin: auto 15px;
+    }
+    .pointsText {
+        margin: auto 5px;
+        width: 60px;
+    }
+    
+}

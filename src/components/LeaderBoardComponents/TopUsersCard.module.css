@@ -1,0 +1,86 @@
+.mainWrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.fistCup {
+    width: 70px;
+    margin: 10px auto;
+}
+.firstRankWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10px 20px 40px 20px;
+}
+.firstRankAvatar {
+    width: 160px;
+    height: 160px;
+    border: 3px solid #ffd700;
+    border-radius: 50%;
+    -webkit-box-shadow: 0px 0px 10px 4px rgba(255, 215, 0, 0.5);
+    -moz-box-shadow: 0px 0px 10px 4px rgba(255, 215, 0, 0.5);
+    box-shadow: 0px 0px 10px 4px rgba(255, 215, 0, 0.5);
+}
+
+.secondRankWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto 20px 0 20px;
+}
+.secondRankAvatar {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 3px solid #c0c0c0;
+    -webkit-box-shadow: 0px 0px 10px 4px rgba(192, 192, 192, 0.5);
+    -moz-box-shadow: 0px 0px 10px 4px rgba(192, 192, 192, 0.5);
+    box-shadow: 0px 0px 10px 4px rgba(192, 192, 192, 0.5);
+}
+
+.thirdRankWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto 20px 0 20px;
+}
+.thirdRankAvatar {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 3px solid #d2691e;
+    -webkit-box-shadow: 0px 0px 10px 4px rgba(210, 105, 30, 0.5);
+    -moz-box-shadow: 0px 0px 10px 4px rgba(210, 105, 30, 0.5);
+    box-shadow: 0px 0px 10px 4px rgba(210, 105, 30, 0.5);
+}
+
+.userName {
+    font-size: 20px;
+    margin: 15px 0;
+    text-align: center;
+    color: #fff;
+}
+
+.points {
+    text-align: center;
+    color: #ff6423;
+    font-weight: bold;
+    margin-top: 0;
+}
+
+@media (max-width: 768px) {
+    /* justify-content: center; */
+    .firstRankAvatar {
+        width: 100px;
+        height: 100px;
+    }
+    .secondRankAvatar {
+        width: 80px;
+        height: 80px;
+    }
+    .thirdRankAvatar {
+        width: 80px;
+        height: 80px;
+    }
+}

@@ -53,9 +53,9 @@ const QuizItem = observer(() => {
                         <div className={cl.mainWrapper}>
                             <QuizAnswerModal show={showModal} setShow={setShowModal} isCorrect={isCorrectAnswer}/>
                             <div className={cl.quizNavigationWrapeer}>
-                                <button className={cl.quizNavButton} onClick={() => navigate(QUIZE_ITEM_ROUTE + '/' + `${parseInt(id) - 1}`)}>Предыдущий</button>
+                                <button className={cl.quizNavButton} onClick={() => navigate(QUIZE_ITEM_ROUTE + `/${parseInt(id) - 1}`)}>Предыдущий</button>
                                 <button className={cl.quizNavButton} onClick={() => navigate(QUIZE_LIST_ROUTE)}>Список</button>
-                                <button className={cl.quizNavButton} onClick={() => navigate(QUIZE_ITEM_ROUTE + '/' + `${parseInt(id) + 1}`)}>Следующий</button>
+                                <button className={cl.quizNavButton} onClick={() => navigate(QUIZE_ITEM_ROUTE + `/${parseInt(id) + 1}`)}>Следующий</button>
                             </div>
                             <div className={cl.quizCard}>
                                 <h2 className={cl.quizTitle}>{quizData.id}. {quizData.title}</h2>
@@ -80,9 +80,9 @@ const QuizItem = observer(() => {
                         <div className={cl.mainWrapper}>
                             <QuizAnswerModal show={showModal} setShow={setShowModal} isCorrect={isCorrectAnswer}/>
                             <div className={cl.quizNavigationWrapeer}>
-                                <button className={cl.quizNavButton} onClick={() => navigate(QUIZE_ITEM_ROUTE + '/' + `${parseInt(id) - 1}`)}>Предыдущий</button>
+                                <button className={cl.quizNavButton} onClick={() => navigate(QUIZE_ITEM_ROUTE + `/${parseInt(id) - 1}`)}>Предыдущий</button>
                                 <button className={cl.quizNavButton} onClick={() => navigate(QUIZE_LIST_ROUTE)}>Список</button>
-                                <button className={cl.quizNavButton} onClick={() => navigate(QUIZE_ITEM_ROUTE + '/' + `${parseInt(id) + 1}`)}>Следующий</button>
+                                <button className={cl.quizNavButton} onClick={() => navigate(QUIZE_ITEM_ROUTE + `/${parseInt(id) + 1}`)}>Следующий</button>
                             </div>
                             <div className={cl.quizCard}>
                                 <h2 className={cl.quizTitle}>{quizData.id}. {quizData.title}</h2>

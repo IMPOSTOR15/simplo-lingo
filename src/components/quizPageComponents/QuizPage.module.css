@@ -10,5 +10,7 @@
     color: #fff;
     text-align: center;
 }
-
+.tableWrapper {
+    width: 100%;
+}
 

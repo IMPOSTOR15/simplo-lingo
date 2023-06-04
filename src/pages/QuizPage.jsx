@@ -6,13 +6,17 @@ import QuizListItem from '../components/quizPageComponents/QuizListItem';
 import { getQuestionsFilterBySolvedAndTheme } from '../http/qestionApi';
 import { Context } from '..';
 import NoData from '../components/UI/NotFound/NoData';
+import LoadingIndicator from '../components/UI/Loading/LoadingIndicator';
 const quizPage = observer(() => {
+    const [isLoading, setIsLoading] = useState(true)
+
     const [quizArr, setQuizArr] = useState([])
     const {user} = useContext(Context)
     const [theme, setTheme] = useState('')
     const [dificult, setDificult] = useState('')
     // const [sortType, setSortType] = useState('')
     useEffect(() => {
+        setIsLoading(true)
         let userid
         if (user.user.id) {
             userid = user.user.id
@@ -21,9 +25,8 @@ const quizPage = observer(() => {
         }
         getQuestionsFilterBySolvedAndTheme(userid, dificult, theme).then(
             data => {
-                console.log(data);
                 setQuizArr(data.rows.sort((a,b) => a.id - b.id))
-                console.log(quizArr);
+                setIsLoading(false)
             }
         )
     }, [user.user.id, dificult, theme])
@@ -37,6 +40,8 @@ const quizPage = observer(() => {
                 setDificult={setDificult}
             
             />
+            {isLoading && <LoadingIndicator top={"50%"}/>}
+            <div className={cl.tableWrapper} style={isLoading ? {opacity: 0} : {}}>
             {quizArr.length !== 0 ?
                 (quizArr.map((quiz,index) =>
                     <QuizListItem
@@ -50,9 +55,9 @@ const quizPage = observer(() => {
                     />
                 ))
                 :
-                <NoData/>
+                <NoData />
             }
-            
+            </div>
         </div>
     );
 });

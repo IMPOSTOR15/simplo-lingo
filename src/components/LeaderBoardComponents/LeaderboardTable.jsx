@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from 'react';
 import cl from './LeaderbordTable.module.css'
-import { getLeaderboard } from '../../http/ratingApi';
 import LeaderboardRow from './LeaderboardRow';
 const LeaderboardTable = ({...props}) => {
-    
     return (
         <div className={cl.mainWrapper}>
             <div className={cl.infoRow}>

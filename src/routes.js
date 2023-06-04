@@ -14,6 +14,10 @@ export const authRoutes = [
         path: PROFILE_ROUTE,
         component: <ProfilePage/>
     },
+    {
+        path: QUIZE_ITEM_ROUTE + '/:id',
+        component: <QuizItem/>
+    },
 ]
 
 export const publicRoutes = [
@@ -28,14 +32,6 @@ export const publicRoutes = [
     {
         path: REGISTRATION_ROUTE,
         component: <LoginPage/>
-    },
-    {
-        path: QUIZE_LIST_ROUTE,
-        component: <QuizPage/>
-    },
-    {
-        path: QUIZE_ITEM_ROUTE + '/:id',
-        component: <QuizItem/>
     },
     {
         path: LEADERBOARD_ROUTE,

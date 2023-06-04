@@ -1,7 +1,6 @@
 import { observer } from 'mobx-react-lite';
-import React, { useContext, useEffect, useState } from 'react';
+import React from 'react';
 import cl from './QuizAnswerModal.module.css'
-import { Context } from '../..';
 import SuccesIco from '../UI/SVGIcons/SuccesIco';
 import ErrorIco from '../UI/SVGIcons/ErrorIco';
 import { useNavigate } from 'react-router-dom';

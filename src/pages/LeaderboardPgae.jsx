@@ -4,16 +4,25 @@ import { observer } from 'mobx-react-lite';
 import cl from '../components/LeaderBoardComponents/LeaderboardPage.module.css'
 import LeaderboardTable from '../components/LeaderBoardComponents/LeaderboardTable';
 import { getLeaderboard } from '../http/ratingApi';
+import LoadingIndicator from '../components/UI/Loading/LoadingIndicator';
 const LeaderboardPgae = observer(() => {
+    const [isLoading, setIsLoading] = useState(true)
     const [leaderboardData, setleaderboardData] = useState([])
     useEffect(() => {
-        getLeaderboard().then(data => setleaderboardData(data))
+        setIsLoading(true)
+        getLeaderboard().then(data => {
+            setleaderboardData(data)
+            setIsLoading(false)
+        })
     }, [])
     return (
-        <div className={cl.mainWrapper}>
-            <h1 className={cl.leaderboardHeader}>ТАБЛИЦА ЛИДЕРОВ</h1>
-            <TopUsersCard leaderboardData={leaderboardData.slice(0, 3)}/>
-            <LeaderboardTable leaderboardData={leaderboardData.slice(2, -1)}/>
+        <div>
+            {isLoading && <LoadingIndicator/> }
+            <div className={cl.mainWrapper} style={isLoading ? {opacity: 0} : {}}>
+                <h1 className={cl.leaderboardHeader}>ТАБЛИЦА ЛИДЕРОВ</h1>
+                <TopUsersCard leaderboardData={leaderboardData.slice(0, 3)}/>
+                <LeaderboardTable leaderboardData={leaderboardData.slice(2, -1)}/>
+            </div>
         </div>
     );
 });

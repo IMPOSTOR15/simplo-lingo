@@ -10,7 +10,9 @@ import { Context } from '../..';
 import { QUIZE_ITEM_ROUTE, QUIZE_LIST_ROUTE } from '../../utils/consts';
 import NotFound from '../UI/NotFound/NotFound';
 import { observer } from 'mobx-react-lite';
+import LoadingIndicator from '../UI/Loading/LoadingIndicator';
 const QuizItem = observer(() => {
+    const [isLoading, setIsLoading] = useState(true)
     const {id} = useParams()
     const {user} = useContext(Context)
     const navigate = useNavigate()
@@ -23,39 +25,42 @@ const QuizItem = observer(() => {
     const [isCorrectAnswer, setIsCorrectAnswer] = useState(false)
     
     useEffect(() => {
+        setIsLoading(true)
         let user_id = user.user.id ? user.user.id : localStorage.getItem('user_id')
-        console.log(user_id);
+
         getQestionsById(id).then(data => setQuizData(data))
         getQestionAnswers(id).then(data => setAnswers(data))
-        console.log(user_id);
+
         solvedCheck(user_id, id).then(data => {
             setIsSolved(data.isSolved)
-            console.log(data);
-            console.log(quizData);
+            setIsLoading(false)
         })
-    }, [id])
+    }, [id, showModal])
 
     const giveAnswer = () => {
-        if (quizData.correct_answer_id === pikedAnswer.id) {
-            setIsCorrectAnswer(true)
-            giveCorrectAnswer(quizData.id, pikedAnswer.id, user.user.id).then(data => console.log(data))
-        } else {
-            setIsCorrectAnswer(false)
+        if (pikedAnswer.id) {
+            setIsLoading(true)
+            giveCorrectAnswer(quizData.id, pikedAnswer.id, user.user.id).then(data => {
+                    setIsCorrectAnswer(data.isCorrect)
+                    setShowModal(true)
+                }
+            ) 
         }
-        setShowModal(true)
     }
 
     return (
         <div>
+            <QuizAnswerModal show={showModal} setShow={setShowModal} isCorrect={isCorrectAnswer}/>
+            {isLoading && <LoadingIndicator/>}
             {
                 quizData ? 
                     ( isSolved ?
-                        <div className={cl.mainWrapper}>
-                            <QuizAnswerModal show={showModal} setShow={setShowModal} isCorrect={isCorrectAnswer}/>
+                        <div className={cl.mainWrapper} style={isLoading ? {opacity: 0} : {}}>
+                            
                             <div className={cl.quizNavigationWrapeer}>
-                                <button className={cl.quizNavButton} onClick={() => navigate(QUIZE_ITEM_ROUTE + `/${parseInt(id) - 1}`)}>Предыдущий</button>
-                                <button className={cl.quizNavButton} onClick={() => navigate(QUIZE_LIST_ROUTE)}>Список</button>
-                                <button className={cl.quizNavButton} onClick={() => navigate(QUIZE_ITEM_ROUTE + `/${parseInt(id) + 1}`)}>Следующий</button>
+                                <button className={cl.quizNavButton} onClick={() => navigate(QUIZE_ITEM_ROUTE + `/${parseInt(id) - 1}`)}>&#129092; Предыдущий</button>
+                                <button className={cl.quizNavButton} onClick={() => navigate(QUIZE_LIST_ROUTE)}>&#128221; Список</button>
+                                <button className={cl.quizNavButton} onClick={() => navigate(QUIZE_ITEM_ROUTE + `/${parseInt(id) + 1}`)}>Следующий &#129094;</button>
                             </div>
                             <div className={cl.quizCard}>
                                 <h2 className={cl.quizTitle}>{quizData.id}. {quizData.title}</h2>
@@ -77,12 +82,11 @@ const QuizItem = observer(() => {
                         </div>
                         
                     :
-                        <div className={cl.mainWrapper}>
-                            <QuizAnswerModal show={showModal} setShow={setShowModal} isCorrect={isCorrectAnswer}/>
+                        <div className={cl.mainWrapper} style={isLoading ? {opacity: 0} : {}}>
                             <div className={cl.quizNavigationWrapeer}>
-                                <button className={cl.quizNavButton} onClick={() => navigate(QUIZE_ITEM_ROUTE + `/${parseInt(id) - 1}`)}>Предыдущий</button>
-                                <button className={cl.quizNavButton} onClick={() => navigate(QUIZE_LIST_ROUTE)}>Список</button>
-                                <button className={cl.quizNavButton} onClick={() => navigate(QUIZE_ITEM_ROUTE + `/${parseInt(id) + 1}`)}>Следующий</button>
+                                <button className={cl.quizNavButton} onClick={() => navigate(QUIZE_ITEM_ROUTE + `/${parseInt(id) - 1}`)}>&#129092; Предыдущий</button>
+                                <button className={cl.quizNavButton} onClick={() => navigate(QUIZE_LIST_ROUTE)}>&#128221; Список</button>
+                                <button className={cl.quizNavButton} onClick={() => navigate(QUIZE_ITEM_ROUTE + `/${parseInt(id) + 1}`)}>Следующий &#129094;</button>
                             </div>
                             <div className={cl.quizCard}>
                                 <h2 className={cl.quizTitle}>{quizData.id}. {quizData.title}</h2>

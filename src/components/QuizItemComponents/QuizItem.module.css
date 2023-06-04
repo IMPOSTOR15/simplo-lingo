@@ -132,4 +132,10 @@
     .mainWrapper {
         margin-top: 20%;
     }
+    .quizNavButton {
+
+        margin: 10px auto 0 auto;
+        font-size: 14px;
+
+    }
 }

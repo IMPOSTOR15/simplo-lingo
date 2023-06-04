@@ -4,10 +4,9 @@ import cl from './QuizAnswerModal.module.css'
 import SuccesIco from '../UI/SVGIcons/SuccesIco';
 import ErrorIco from '../UI/SVGIcons/ErrorIco';
 import { useNavigate } from 'react-router-dom';
-import { PROFILE_ROUTE } from '../../utils/consts';
+import { PROFILE_ROUTE, QUIZE_ITEM_ROUTE } from '../../utils/consts';
 
-const QuizAnswerModal = observer(({show, setShow, isCorrect}) => {
-
+const QuizAnswerModal = observer(({id, show, setShow, isCorrect}) => {
     const navigate = useNavigate()
     if (!show) {
         return null
@@ -39,7 +38,12 @@ const QuizAnswerModal = observer(({show, setShow, isCorrect}) => {
                     
                 </div>
                 <div className={cl.modalFooter}>
-                    <button className={cl.modalButton} onClick={() => setShow(false)}>СЛЕДУЮЩИЙ</button>
+                    { isCorrect ?
+                        <button className={cl.modalButton} onClick={() => {navigate(QUIZE_ITEM_ROUTE + `/${parseInt(id) + 1}`); setShow(false)}}>СЛЕДУЮЩИЙ</button>
+                        :
+                        <button className={cl.modalButton} onClick={() => setShow(false)}>ПОПРОБОВАТЬ ЕЩЕ</button>
+                    }
+                    
                     <button className={cl.exitButton} onClick={() => toProfile()}>ПРОФИЛЬ</button>
                 </div>
                 

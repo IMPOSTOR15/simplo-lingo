@@ -35,7 +35,7 @@ const QuizItem = observer(() => {
             setIsSolved(data.isSolved)
             setIsLoading(false)
         })
-    }, [id, showModal])
+    }, [id, showModal, user.user.id])
 
     const giveAnswer = () => {
         if (pikedAnswer.id) {
@@ -44,13 +44,13 @@ const QuizItem = observer(() => {
                     setIsCorrectAnswer(data.isCorrect)
                     setShowModal(true)
                 }
-            ) 
+            )
         }
     }
 
     return (
         <div>
-            <QuizAnswerModal show={showModal} setShow={setShowModal} isCorrect={isCorrectAnswer}/>
+            <QuizAnswerModal id={id} show={showModal} setShow={setShowModal} isCorrect={isCorrectAnswer}/>
             {isLoading && <LoadingIndicator/>}
             {
                 quizData ? 

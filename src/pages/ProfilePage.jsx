@@ -23,12 +23,16 @@ const ProfilePage = observer(() => {
     const [showEdit, setShowEdit] = useState(false)
     const [pieRatingValue, setPieRatingValue] = useState(0)
     const [quizArr, setQuizArr] = useState([])
-    // const [sortType, setSortType] = useState('')
+
     useEffect(() => {
         
     }, [])
+
     useEffect(() => {
-        fetchData();
+        if (!showEdit) {
+            fetchData();
+        }
+        
     }, [showEdit, user.user.id]);
        
     const logOut = () => {
@@ -81,7 +85,7 @@ const ProfilePage = observer(() => {
                             <img className={cl.logoImg} src={baseprofileimg} alt="" />
                         }
                     </div>
-                    <div className={cl.card}>   
+                    <div className={cl.card}>
                         <h2 className={cl.cardHeader}>Информация о профиле</h2>
                         <div className={cl.infoCard}>
                             <div className={cl.infoColumn}>

@@ -3,38 +3,45 @@ import cl from './EditProfileModal.module.css'
 import { editUser, getUserData } from '../../http/userAPI';
 import { observer } from 'mobx-react-lite';
 import { Context } from '../..';
+import SmallLoader from '../UI/Loading/SmallLoader';
 
 const EditProfileModal = observer(({show, setShow}) => {
+    const [isLoading, setIsLoading] = useState(false)
+
     const {user} = useContext(Context)
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [file, setfile] = useState(null)
     useEffect(() => {
+        setIsLoading(true)
         let userid
         if (user.user.id) {
             userid = user.user.id
         } else {
             userid = localStorage.getItem('user_id')
         }
-        getUserData(userid).then(data => user.setUser(data))
-        if(user.user.name) {
+        getUserData(userid).then(data => {
+            user.setUser(data)
             setName(user.user.name)
-        }
-        if(user.user.email) {
             setEmail(user.user.email)
-        }
+            setIsLoading(false)
+        })
         
     }, [show])
     const selectFile = e => {
         setfile(e.target.files[0])
     }
     const editUserData = () => {
+        setIsLoading(true)
         const formData = new FormData()
         formData.append('id', localStorage.getItem('user_id'))
         formData.append('name', name)
         formData.append('email', email)
         formData.append('img', file)
-        editUser(formData).then(data => setShow(false))
+        editUser(formData).then(data => {
+            setIsLoading(false)
+            setShow(false)
+        })
     }
 
     
@@ -46,10 +53,9 @@ const EditProfileModal = observer(({show, setShow}) => {
     return (
         <div className={cl.modal}>
             <div className={cl.modalContent}>
-                <div className={cl.modalHeader}>
-                    РЕДАКТИРОВАТЬ ПРОФИЛЬ
-                </div>
-                <div className={cl.modalBody}>
+                <div className={cl.modalHeader}>РЕДАКТИРОВАТЬ ПРОФИЛЬ</div>
+                {isLoading && <SmallLoader/>}
+                <div style={isLoading ? {display: "none"} : {}} className={cl.modalBody}>
                     <label>Имя</label>
                     <input
                         type='text'
@@ -79,8 +85,8 @@ const EditProfileModal = observer(({show, setShow}) => {
                         className={cl.modalPhotoInput}
                         onChange={selectFile}
                     />
-
                 </div>
+                
                 <div className={cl.modalFooter}>
                     <button className={cl.editButton} onClick={() => editUserData()}>Применить</button>
                     <button className={cl.closeButton} onClick={() => setShow(false)}>Закрыть</button>

@@ -3,7 +3,7 @@ import cl from "../components/profileComponents/ProfilePage.module.css"
 import { getUserData } from '../http/userAPI';
 import { Context } from '..';
 import { observer } from 'mobx-react-lite';
-import { HOME_ROUTE, QUIZE_LIST_ROUTE } from '../utils/consts';
+import { ACHIVEMENTS_ROUTE, HOME_ROUTE, QUIZE_LIST_ROUTE } from '../utils/consts';
 import { useNavigate } from 'react-router-dom';
 import baseprofileimg from '../assets/profileMockup.png'
 import EditProfileModal from '../components/profileComponents/EditProfileModal';
@@ -100,7 +100,9 @@ const ProfilePage = observer(() => {
                                 <p className={cl.infoParagraph}>{Math.floor(user.userRating.points/1000) + 1}</p>
                                 <p className={cl.infoParagraph}>{user.userRating.total_solved}</p>
                             </div>
+                            
                         </div>
+                        <button className={cl.editBtn} onClick={() => navigate(ACHIVEMENTS_ROUTE)}>ДОСТИЖЕНИЯ</button>
                         <button className={cl.editBtn} onClick={() => showEditModal()}>РЕДАКТИРОВАТЬ</button>
                         <button className={cl.editBtn} onClick={() => logOut()}>ВЫЙТИ</button>
                     </div>

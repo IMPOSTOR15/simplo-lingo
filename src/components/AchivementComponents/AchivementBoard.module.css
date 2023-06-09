@@ -1,0 +1,16 @@
+.mainWrapper {
+    margin-top: 7vh;
+    
+}
+.header {
+    color: #fff;
+    text-align: center;
+}
+.achivementsWrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 80%;
+    margin: 0 auto 0 auto;
+    justify-content: space-around;
+}

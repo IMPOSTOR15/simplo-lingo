@@ -1,0 +1,48 @@
+.cardWrapper {
+    display: flex;
+    border: 2px solid #ff6423;
+    border-radius: 20px;
+    flex-direction: column;
+    margin: 20px;
+    -webkit-box-shadow: 3px 3px 8px 0px rgba(255, 100, 35, 0.5);
+    -moz-box-shadow: 3px 3px 8px 0px rgba(255, 100, 35, 0.5);
+    box-shadow: 3px 3px 8px 0px rgba(255, 100, 35, 0.5);
+}
+.achivementTitle {
+    margin: 10px 0 0 0;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+}
+.achivementRare {
+    margin: 10px 0 0 0;
+    color: aqua;
+    text-align: center;
+}
+.achivementImg {
+    width: 200px;
+    height: 200px;
+    margin: 20px;
+    border-radius: 50%;
+}
+
+.claimBtn {
+    cursor: pointer;
+    width: 80%;
+    border: 2px solid #ff6423;
+    border-radius: 10px;
+    margin: 20px auto;
+    padding: 5px 0;
+    background-color: transparent;
+    color: #fff;
+    transition: background-color 0.3s ease-in-out;
+    -webkit-box-shadow: 3px 3px 8px 0px rgba(255, 100, 35, 0.5);
+    -moz-box-shadow: 3px 3px 8px 0px rgba(255, 100, 35, 0.5);
+    box-shadow: 3px 3px 8px 0px rgba(255, 100, 35, 0.5);
+}
+
+.claimBtn:hover {
+
+    background-color: #ff6423;
+
+}

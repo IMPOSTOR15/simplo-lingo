@@ -1,12 +1,23 @@
 .cardWrapper {
     display: flex;
-    border: 2px solid #ff6423;
+    border: 2px solid #33393f;
     border-radius: 20px;
     flex-direction: column;
     margin: 20px;
+    
+}
+.claimedCard {
+    border: 2px solid #ff6423;
     -webkit-box-shadow: 3px 3px 8px 0px rgba(255, 100, 35, 0.5);
     -moz-box-shadow: 3px 3px 8px 0px rgba(255, 100, 35, 0.5);
     box-shadow: 3px 3px 8px 0px rgba(255, 100, 35, 0.5);
+}
+
+.readyToClaimCard {
+    border: 2px solid #894fb0;
+    -webkit-box-shadow: 3px 3px 8px 0px #894fb07c;
+    -moz-box-shadow: 3px 3px 8px 0px #894fb07c;
+    box-shadow: 3px 3px 8px 0px #894fb07c;
 }
 .achivementTitle {
     margin: 10px 0 0 0;
@@ -27,22 +38,44 @@
 }
 
 .claimBtn {
-    cursor: pointer;
     width: 80%;
     border: 2px solid #ff6423;
+    border-radius: 10px;
+    margin: 20px auto;
+    padding: 5px 0;
+    background-color: #ff6423;
+    color: #fff;
+}
+
+.readyToClaimBtn {
+    cursor: pointer;
+    width: 80%;
+    border: 2px solid #894fb0;
     border-radius: 10px;
     margin: 20px auto;
     padding: 5px 0;
     background-color: transparent;
     color: #fff;
     transition: background-color 0.3s ease-in-out;
-    -webkit-box-shadow: 3px 3px 8px 0px rgba(255, 100, 35, 0.5);
-    -moz-box-shadow: 3px 3px 8px 0px rgba(255, 100, 35, 0.5);
-    box-shadow: 3px 3px 8px 0px rgba(255, 100, 35, 0.5);
+    -webkit-box-shadow: 3px 3px 8px 0px #894fb07c;
+    -moz-box-shadow: 3px 3px 8px 0px #894fb07c;
+    box-shadow: 3px 3px 8px 0px #894fb07c;
 }
 
-.claimBtn:hover {
+.inncativeBtn {
+    cursor: not-allowed;
+    width: 80%;
+    border: 2px solid #33393f;
+    border-radius: 10px;
+    margin: 20px auto;
+    padding: 5px 0;
+    background-color: transparent;
+    color: #fff;
+    transition: background-color 0.3s ease-in-out;
+}
 
-    background-color: #ff6423;
+.readyToClaimBtn:hover {
+
+    background-color: #894fb0;
 
 }

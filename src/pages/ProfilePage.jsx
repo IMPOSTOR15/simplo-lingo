@@ -63,7 +63,7 @@ const ProfilePage = observer(() => {
         Promise.all([userData, userRating, solvedQuestions]).then(values => {
             setUserData(values[0]);
             user.setUserRating(values[1]);
-            setPieRatingValue(values[1].points / 10);
+            setPieRatingValue((values[1].points % 1000) / 10);
             console.log(values[2].reverse());
             setQuizArr(values[2]);
             setIsLoading(false);
@@ -112,7 +112,7 @@ const ProfilePage = observer(() => {
                             pieRatingValue={pieRatingValue}
                             points={user.userRating.points}
                         />
-                        <p className={cl.cardHeader}>До следующего уровня {1000 - user.userRating.points} pts</p>
+                        <p className={cl.cardHeader}>До следующего уровня {1000 - user.userRating.points % 1000} pts</p>
                     </div>
                 </div>
                 <div className={cl.qestionBtnSection}>

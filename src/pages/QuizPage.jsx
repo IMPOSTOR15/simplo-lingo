@@ -34,7 +34,7 @@ const quizPage = observer(() => {
         )
     }, [user.user.id, dificult, theme])
     return (
-        // <EnterExitWraper>
+        <EnterExitWraper>
         <div className={cl.mainWrapper}>
             <h1 className={cl.headerText}>СПИСОК ВОПРОСОВ</h1>
             <ThemeRow
@@ -66,7 +66,7 @@ const quizPage = observer(() => {
                 )}
             </div>
         </div>
-        // </EnterExitWraper>
+        </EnterExitWraper>
     );
 });
 

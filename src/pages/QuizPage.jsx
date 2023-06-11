@@ -49,7 +49,7 @@ const quizPage = observer(() => {
             {quizArr.length !== 0 ? (
                 <TransitionGroup>
                     {quizArr.map((quiz, index) => (
-                    <CSSTransition key={quiz.id} timeout={300} classNames="slide">
+                    <CSSTransition key={quiz.id} timeout={200} classNames="slide">
                         <QuizListItem
                         index={index}
                         id={quiz.id}

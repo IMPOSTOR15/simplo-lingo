@@ -33,13 +33,14 @@ body {
 
 .slide-enter {
     opacity: 0;
-    transform: translateX(-100%);
+    transform: translateX(-20%);
 }
 
 .slide-enter-active {
     opacity: 1;
     transform: translateX(0%);
-    transition: opacity 300ms ease-in, transform 300ms ease-in;
+    transition: opacity 200ms ease-in,
+                transform 200ms ease-in;
 }
 
 .slide-exit {
@@ -49,6 +50,7 @@ body {
 
 .slide-exit-active {
     opacity: 0;
-    transform: translateX(100%);
-    transition: opacity 300ms ease-in, transform 300ms ease-in;
+    transform: translateX(20%);
+    transition: opacity 200ms ease-in,
+                transform 200ms ease-in;
 }

@@ -43,12 +43,6 @@ const EditProfileModal = observer(({show, setShow}) => {
             setShow(false)
         })
     }
-
-    
-    
-    if (!show) {
-        return null
-    }
     
     return (
         <div className={cl.modal}>

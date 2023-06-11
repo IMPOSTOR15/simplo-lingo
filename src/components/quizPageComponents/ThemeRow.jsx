@@ -36,9 +36,8 @@ const ThemeRow = ({...props}) => {
                 >
                     Все темы
                 </button>
-                
-                <select name="dificult" id="" className={cl.diffucultSelect} onChange={(event) => props.setDificult(event.target.value)}>
-                    <option value="" disabled selected>выбери сложность</option>
+                <select name="dificult" id="" className={cl.diffucultSelect} defaultValue="base" onChange={(event) => props.setDificult(event.target.value)}>
+                    <option value="base" disabled>выбери сложность</option>
                     <option value="" className={cl.selectOption}>любая</option>
                     <option value="easy" className={cl.selectOption}>легкие</option>
                     <option value="medium" className={cl.selectOption}>средние</option>

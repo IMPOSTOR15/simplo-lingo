@@ -13,27 +13,22 @@ import { getUserRating } from '../http/ratingApi';
 import { getSolvedQuestions } from '../http/qestionApi';
 import LoadingIndicator from '../components/UI/Loading/LoadingIndicator';
 import RatingDonut from '../components/profileComponents/RatingDonut';
+import { CSSTransition } from 'react-transition-group';
+import EnterExitWraper from '../components/UI/Animation/EnterExitWrapper';
 
 const ProfilePage = observer(() => {
     const [isLoading, setIsLoading] = useState(true)
-
     const {user} = useContext(Context)
     const navigate = useNavigate()
-    const [userData, setUserData] = useState({})
     const [showEdit, setShowEdit] = useState(false)
     const [pieRatingValue, setPieRatingValue] = useState(0)
     const [quizArr, setQuizArr] = useState([])
 
     useEffect(() => {
-        
-    }, [])
-
-    useEffect(() => {
         if (!showEdit) {
             fetchData();
         }
-        
-    }, [showEdit, user.user.id]);
+    }, [showEdit]);
        
     const logOut = () => {
         user.setUser({})
@@ -48,35 +43,44 @@ const ProfilePage = observer(() => {
     }
 
     async function fetchData() {
-        setIsLoading(true);
+        
         let userid;
         if (user.user.id) {
             userid = user.user.id;
         } else {
             userid = localStorage.getItem('user_id');
         }
-        console.log(userid);
         const userData = getUserData(userid);
         const userRating = getUserRating(userid);
         const solvedQuestions = getSolvedQuestions(userid);
     
         Promise.all([userData, userRating, solvedQuestions]).then(values => {
-            setUserData(values[0]);
+            user.setUser(values[0])
             user.setUserRating(values[1]);
             setPieRatingValue((values[1].points % 1000) / 10);
-            console.log(values[2].reverse());
             setQuizArr(values[2]);
             setIsLoading(false);
+            console.log(user.user.avatar);
         }).catch(error => {
             console.error(error);
             setIsLoading(false);
         });
     }
+    if(isLoading) {
+        return <LoadingIndicator/>
+    }
     return (
+        <EnterExitWraper>
         <div className={cl.mainWrapper}>
-            {isLoading && <LoadingIndicator/> }
             <div style={isLoading ? {opacity: 0} : {}}>
-                <EditProfileModal show={showEdit} setShow={setShowEdit}/>
+                <CSSTransition
+                    in={showEdit}
+                    classNames='fade'
+                    timeout={300}
+                    unmountOnExit
+                >
+                    <EditProfileModal show={showEdit} setShow={setShowEdit}/>
+                </CSSTransition>
                 <div className={cl.row}>
                     <div className={cl.logoCard}>
                         {user.user.avatar ? 
@@ -95,8 +99,8 @@ const ProfilePage = observer(() => {
                                 <p className={cl.infoParagraph}>Решено вопросов:</p>
                             </div>
                             <div className={cl.infoRow}>
-                                <p className={cl.infoParagraph}>{userData.name ? userData.name : "ошибка"}</p>
-                                <p className={cl.infoParagraph}>{userData.email}</p>
+                                <p className={cl.infoParagraph}>{user.user.name ? user.user.name : "ошибка"}</p>
+                                <p className={cl.infoParagraph}>{user.user.email}</p>
                                 <p className={cl.infoParagraph}>{Math.floor(user.userRating.points/1000) + 1}</p>
                                 <p className={cl.infoParagraph}>{user.userRating.total_solved}</p>
                             </div>
@@ -138,6 +142,7 @@ const ProfilePage = observer(() => {
             </div>
             {/* } */}
         </div>
+        </EnterExitWraper>
     );
 });
 

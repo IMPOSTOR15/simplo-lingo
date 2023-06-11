@@ -7,6 +7,9 @@ import { getQuestionsFilterBySolvedAndTheme } from '../http/qestionApi';
 import { Context } from '..';
 import NoData from '../components/UI/NotFound/NoData';
 import LoadingIndicator from '../components/UI/Loading/LoadingIndicator';
+import EnterExitWraper from '../components/UI/Animation/EnterExitWrapper';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+
 const quizPage = observer(() => {
     const [isLoading, setIsLoading] = useState(true)
 
@@ -31,6 +34,7 @@ const quizPage = observer(() => {
         )
     }, [user.user.id, dificult, theme])
     return (
+        // <EnterExitWraper>
         <div className={cl.mainWrapper}>
             <h1 className={cl.headerText}>СПИСОК ВОПРОСОВ</h1>
             <ThemeRow
@@ -42,23 +46,27 @@ const quizPage = observer(() => {
             />
             {isLoading && <LoadingIndicator top={"50%"}/>}
             <div className={cl.tableWrapper} style={isLoading ? {opacity: 0} : {}}>
-            {quizArr.length !== 0 ?
-                (quizArr.map((quiz,index) =>
-                    <QuizListItem
-                        key={quiz.id}
+            {quizArr.length !== 0 ? (
+                <TransitionGroup>
+                    {quizArr.map((quiz, index) => (
+                    <CSSTransition key={quiz.id} timeout={300} classNames="slide">
+                        <QuizListItem
                         index={index}
                         id={quiz.id}
                         title={quiz.title}
                         dificulty={quiz.dificult}
                         isSolved={quiz.solvedByUser}
                         buttonText={'ОТВЕТИТЬ'}
-                    />
-                ))
-                :
+                        />
+                    </CSSTransition>
+                    ))}
+                </TransitionGroup>
+                ) : (
                 <NoData />
-            }
+                )}
             </div>
         </div>
+        // </EnterExitWraper>
     );
 });
 

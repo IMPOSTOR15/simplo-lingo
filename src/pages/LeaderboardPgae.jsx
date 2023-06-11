@@ -5,6 +5,7 @@ import cl from '../components/LeaderBoardComponents/LeaderboardPage.module.css'
 import LeaderboardTable from '../components/LeaderBoardComponents/LeaderboardTable';
 import { getLeaderboard } from '../http/ratingApi';
 import LoadingIndicator from '../components/UI/Loading/LoadingIndicator';
+import EnterExitWraper from '../components/UI/Animation/EnterExitWrapper';
 const LeaderboardPgae = observer(() => {
     const [isLoading, setIsLoading] = useState(true)
     const [leaderboardData, setleaderboardData] = useState([])
@@ -16,6 +17,7 @@ const LeaderboardPgae = observer(() => {
         })
     }, [])
     return (
+        <EnterExitWraper>
         <div>
             {isLoading && <LoadingIndicator/> }
             <div className={cl.mainWrapper} style={isLoading ? {opacity: 0} : {}}>
@@ -24,6 +26,7 @@ const LeaderboardPgae = observer(() => {
                 <LeaderboardTable leaderboardData={leaderboardData.slice(2, -1)}/>
             </div>
         </div>
+        </EnterExitWraper>
     );
 });
 

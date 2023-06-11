@@ -2,10 +2,12 @@ import React from 'react';
 import cl from './QuizListItem.module.css'
 import { useNavigate } from 'react-router-dom';
 import { QUIZE_ITEM_ROUTE } from '../../utils/consts';
+import SlideAnimationWrapper from '../UI/Animation/SlideAnimationWrapper';
 
 const QuizItem = ({...props}) => {
     let navigate = useNavigate();
     return (
+        <SlideAnimationWrapper>
         <div className={`${cl.mainWrapper} ${props.index % 2 === 0 ? cl.quizBackgroundEven : cl.quizBackgroundOdd}`}>
             <div className={cl.quizTitle}>
                 <p className={cl.quizTitleText}>{props.id}. {props.title}</p>
@@ -24,6 +26,7 @@ const QuizItem = ({...props}) => {
                 <button className={props.isSolved ? cl.solvedQuizButton :cl.quizButton} onClick={()=> navigate(QUIZE_ITEM_ROUTE + '/' + props.id)} >{props.isSolved ? "ОТКРЫТЬ" : props.buttonText} </button>
             </div>
         </div>
+        </SlideAnimationWrapper>
     );
 };
 

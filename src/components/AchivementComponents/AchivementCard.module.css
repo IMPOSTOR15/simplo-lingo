@@ -79,3 +79,17 @@
     background-color: #894fb0;
 
 }
+
+@media (max-width: 768px) {
+    .achivementImg {
+        width: 140px;
+        height: 140px;
+        
+        margin: 10px auto;
+        border-radius: 50%;
+    }
+    .cardWrapper {
+        width: 45%;
+        margin: 0 5px 20px 5px;
+    }
+}

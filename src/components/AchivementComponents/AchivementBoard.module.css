@@ -9,8 +9,14 @@
 .achivementsWrapper {
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     width: 80%;
     margin: 0 auto 0 auto;
     justify-content: space-around;
+}
+
+@media (max-width: 768px) {
+    .achivementsWrapper {
+        width:95%;
+    }
 }

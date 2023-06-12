@@ -15,7 +15,7 @@ import LoadingIndicator from '../components/UI/Loading/LoadingIndicator';
 import RatingDonut from '../components/profileComponents/RatingDonut';
 import { CSSTransition } from 'react-transition-group';
 import EnterExitWraper from '../components/UI/Animation/EnterExitWrapper';
-
+import Calendar from '../components/profileComponents/Calendar/Calendar'
 const ProfilePage = observer(() => {
     const [isLoading, setIsLoading] = useState(true)
     const {user} = useContext(Context)
@@ -122,6 +122,7 @@ const ProfilePage = observer(() => {
                 <div className={cl.qestionBtnSection}>
                     <Mainbutton onClick={()=> navigate(QUIZE_LIST_ROUTE)} >ПЕРЕЙТИ К ВОПРОСАМ</Mainbutton>
                 </div>
+                <Calendar checkedDates={[1,2,3,4]}/>
                 <div>
                     <div className={cl.column}>
                         <h2 className={cl.cardHeader}>Последнии решенные вопросы</h2>

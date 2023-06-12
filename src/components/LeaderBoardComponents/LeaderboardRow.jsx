@@ -3,7 +3,7 @@ import cl from './LeaderboardRow.module.css'
 import avatarMockup from '../../assets/profileMockup.png'
 const LeaderboardRow = ({...props}) => {
     return (
-        <div className={cl.rowWrapper}>
+        <div className={`${cl.rowWrapper} ${props.index % 2 === 0 && cl.evenBg}`}>
             <p className={cl.rank}>{props.index + 4}</p>
             {props.data.avatar ?
                 <img className={cl.avatar} src={process.env.REACT_APP_API_URL + props?.data?.avatar} alt="" />

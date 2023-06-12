@@ -11,6 +11,7 @@ import { QUIZE_ITEM_ROUTE, QUIZE_LIST_ROUTE } from '../../utils/consts';
 import NotFound from '../UI/NotFound/NotFound';
 import { observer } from 'mobx-react-lite';
 import LoadingIndicator from '../UI/Loading/LoadingIndicator';
+import EnterExitWraper from '../UI/Animation/EnterExitWrapper';
 const QuizItem = observer(() => {
     const [isLoading, setIsLoading] = useState(true)
     const {id} = useParams()
@@ -49,6 +50,7 @@ const QuizItem = observer(() => {
     }
 
     return (
+        <EnterExitWraper>
         <div>
             <QuizAnswerModal id={id} show={showModal} setShow={setShowModal} isCorrect={isCorrectAnswer}/>
             {isLoading && <LoadingIndicator/>}
@@ -116,6 +118,7 @@ const QuizItem = observer(() => {
             }
             
         </div>
+        </EnterExitWraper>
     );
 });
 

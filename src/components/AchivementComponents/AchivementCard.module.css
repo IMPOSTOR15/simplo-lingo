@@ -3,14 +3,22 @@
     border: 2px solid #33393f;
     border-radius: 20px;
     flex-direction: column;
-    margin: 20px;
+    padding: 0 20px;
+    margin: 20px auto;
     
 }
+
 .claimedCard {
     border: 2px solid #ff6423;
     -webkit-box-shadow: 3px 3px 8px 0px rgba(255, 100, 35, 0.5);
     -moz-box-shadow: 3px 3px 8px 0px rgba(255, 100, 35, 0.5);
     box-shadow: 3px 3px 8px 0px rgba(255, 100, 35, 0.5);
+}
+
+.achivementDescription {
+    text-align: center;
+    color: #8594a3;
+    margin: 10px 0 0 0;
 }
 
 .readyToClaimCard {
@@ -19,22 +27,34 @@
     -moz-box-shadow: 3px 3px 8px 0px #894fb07c;
     box-shadow: 3px 3px 8px 0px #894fb07c;
 }
+
 .achivementTitle {
     margin: 10px 0 0 0;
+    font-size: 20px;
     font-weight: bold;
     color: #fff;
     text-align: center;
 }
+
 .achivementRare {
     margin: 10px 0 0 0;
     color: aqua;
     text-align: center;
 }
+
 .achivementImg {
     width: 200px;
     height: 200px;
     margin: 20px;
     border-radius: 50%;
+    object-fit: cover;
+}
+
+.achivementPoints {
+    margin: 10px 0 0 0;
+    text-align: center;
+    color: #894fb0;
+    font-weight: bold;
 }
 
 .claimBtn {

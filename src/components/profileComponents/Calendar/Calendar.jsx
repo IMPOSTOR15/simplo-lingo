@@ -10,22 +10,17 @@ const Calendar = observer(({ checkedDates }) => {
     
     const [date, setDate] = useState(new Date());
     const [weeks, setWeeks] = useState([])
-    // console.log(date.getMonth());
     const [userActivity, setUserActivity] = useState([])
-
 
     const daysOfWeek = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
     const daysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
     const weeksInMonth = Math.ceil((daysInMonth + new Date(date.getFullYear(), date.getMonth(), 1).getDay()) / 7);
     const startDayOfWeek = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
 
-    
-
     useEffect(() => {
         fetchActivity()
     }, [])
 
-    
     const fetchActivity = async () => {
         let userActivityData = await getUserActivity(user.user.id, date.getMonth)
         setUserActivity(userActivityData);
@@ -33,9 +28,9 @@ const Calendar = observer(({ checkedDates }) => {
         let activityDays = userActivityData.map(obj => {
             return new Date(obj.date).getDate()
         });
+        console.log(activityDays);
         calculateDates(activityDays)
     }
-
 
     const calculateDates = (activityDays) => {
         for (let i = 0; i < weeksInMonth; i++) {

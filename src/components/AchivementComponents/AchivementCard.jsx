@@ -4,7 +4,7 @@ import { $authHost } from '../../http';
 import { Context } from '../..';
 import { claimAchivement } from '../../http/achivementApi';
 import { observer } from 'mobx-react-lite';
-const AchivementCard = observer(({id, title, userAchivements, rare, fetchAchivementsData, img}) => {
+const AchivementCard = observer(({id, title, userAchivements, rare, description, points, fetchAchivementsData, img}) => {
     const {user} = useContext(Context)
     const [isClaimed, setisClaimed] = useState(false)
     const [isRedayToClaim, setIsReadyToClaim] = useState(false)
@@ -31,7 +31,9 @@ const AchivementCard = observer(({id, title, userAchivements, rare, fetchAchivem
         >
             <img className={cl.achivementImg} src={process.env.REACT_APP_API_URL + img} alt="" />
             <p className={cl.achivementTitle}>{title}</p>
+            <p className={cl.achivementDescription}>{description}</p>
             <p className={cl.achivementRare}>{rare}</p>
+            <p className={cl.achivementPoints}>{points} pts</p>
             { isClaimed &&
                 <button className={cl.claimBtn}>ПОЛУЧЕНО</button>
             }

@@ -16,6 +16,10 @@ import RatingDonut from '../components/profileComponents/RatingDonut';
 import { CSSTransition } from 'react-transition-group';
 import EnterExitWraper from '../components/UI/Animation/EnterExitWrapper';
 import Calendar from '../components/profileComponents/Calendar/Calendar'
+
+import awardIco from '../assets/award-ico.png'
+import editIco from '../assets/edit-ico.png'
+import logoutIco from '../assets/logout-ico.png'
 const ProfilePage = observer(() => {
     const [isLoading, setIsLoading] = useState(true)
     const {user} = useContext(Context)
@@ -106,9 +110,17 @@ const ProfilePage = observer(() => {
                             </div>
                             
                         </div>
-                        <button className={cl.editBtn} onClick={() => navigate(ACHIVEMENTS_ROUTE)}>ДОСТИЖЕНИЯ</button>
-                        <button className={cl.editBtn} onClick={() => showEditModal()}>РЕДАКТИРОВАТЬ</button>
-                        <button className={cl.editBtn} onClick={() => logOut()}>ВЫЙТИ</button>
+                        <div className={cl.buttonRow}>
+                            <button className={cl.editBtn} onClick={() => navigate(ACHIVEMENTS_ROUTE)}>
+                                <img className={cl.buttonIco} src={awardIco} alt="" />
+                            </button>
+                            <button className={cl.editBtn} onClick={() => showEditModal()}>
+                                <img className={cl.buttonIco} src={editIco} alt="" />
+                            </button>
+                            <button className={cl.editBtn} onClick={() => logOut()}>
+                            <img className={cl.buttonIco} src={logoutIco} alt="" />
+                            </button>
+                        </div>
                     </div>
                     <div className={cl.card}>
                         <h2 className={cl.cardHeader}>Рейтинг</h2>
@@ -118,11 +130,38 @@ const ProfilePage = observer(() => {
                         />
                         <p className={cl.cardHeader}>До следующего уровня {1000 - user.userRating.points % 1000} pts</p>
                     </div>
+                    <div className={cl.card}>
+                        <h2 className={cl.cardHeader}>Журнал активности</h2>
+                        <Calendar checkedDates={[1,2,3,4]}/>
+                    </div>
+                    <div className={cl.card}>
+                        <h2 className={cl.cardHeader}>Турниры</h2>
+                        <div className={cl.infoCard}>
+                            <div className={cl.infoColumn}>
+                                <p className={cl.infoParagraph}>Выиграно:</p>
+                                <p className={cl.infoParagraph}>Лучший результат:</p>
+                                <p className={cl.infoParagraph}>Последний результат:</p>
+                                {/* <p className={cl.infoParagraph}>Решено вопросов:</p> */}
+                            </div>
+                            <div className={cl.infoRow}>
+                                <p className={cl.infoParagraph}>0</p>
+                                <p className={cl.infoParagraph}>0</p>
+                                <p className={cl.infoParagraph}>0</p>
+                                {/* <p className={cl.infoParagraph}>{user.userRating.total_solved}</p> */}
+                            </div>
+                            
+                        </div>
+                        <Mainbutton onClick={()=> navigate()} >ПРИНЯТЬ УЧАСТИЕ</Mainbutton>
+                        <div className={cl.soon}>
+                            <p className={cl.soonText}>СКОРО</p>
+                        </div>
+                    </div>
                 </div>
                 <div className={cl.qestionBtnSection}>
                     <Mainbutton onClick={()=> navigate(QUIZE_LIST_ROUTE)} >ПЕРЕЙТИ К ВОПРОСАМ</Mainbutton>
                 </div>
-                <Calendar checkedDates={[1,2,3,4]}/>
+                
+                
                 <div>
                     <div className={cl.column}>
                         <h2 className={cl.cardHeader}>Последнии решенные вопросы</h2>

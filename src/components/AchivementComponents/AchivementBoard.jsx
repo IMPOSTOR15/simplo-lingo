@@ -13,6 +13,8 @@ const AchivementBoard = observer(() => {
 
     useEffect(() => {
         fetchAchivementsData()
+        console.log(achivements);
+
     }, [])
 
     const fetchAchivementsData = () => {
@@ -45,6 +47,8 @@ const AchivementBoard = observer(() => {
                             userAchivements={userAchivements}
                             title={achivement.name}
                             rare={achivement.rare}
+                            description={achivement.description}
+                            points={achivement.pointsReward}
                             img={achivement.photo}
                             fetchAchivementsData={fetchAchivementsData}
                         />  

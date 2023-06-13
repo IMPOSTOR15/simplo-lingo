@@ -109,7 +109,8 @@
         border-radius: 50%;
     }
     .cardWrapper {
-        width: 45%;
-        margin: 0 5px 20px 5px;
+        width: 60%;
+        margin: 0 auto 20px auto;
+        padding: 10px 40px 0 40px;
     }
 }

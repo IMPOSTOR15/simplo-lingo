@@ -8,6 +8,8 @@
 }
 
 .calendarThead {
+    display: flex;
+    flex-direction: row;
     color: #fff;
     height: 30px;
 }

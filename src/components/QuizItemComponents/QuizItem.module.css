@@ -99,6 +99,10 @@
     background-color: green;
     box-shadow: none;
 }
+.qestionWrapper {
+    display: flex;
+    flex-direction: column;
+}
 .AnswerBtn {
     min-width: 40%;
     cursor: pointer;
@@ -127,15 +131,47 @@
     box-shadow: none;
 }
 
+.draggableQuestionWrapper {
+    display: flex;
+    color: #fff;
+    flex-direction: column;
+    
+}
+
+.qestionText {
+    justify-content: center;
+    display: flex;
+    color: #fff;
+    flex-direction: column;
+}
+.draggableQuestionTextWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin: 20px auto;
+    padding: 0 10px;
+}
+.qestionElemText {
+    /* margin: 0; */
+    margin: auto 0;
+    vertical-align: middle;
+}
+.answers {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 20px auto;
+}
 
 @media (max-width: 768px) {
     .mainWrapper {
-        margin-top: 20%;
+        margin: 20% auto 0 auto;
+        width: 90%;
+        /* margin-top: 20%; */
+
     }
     .quizNavButton {
-
         margin: 10px auto 0 auto;
         font-size: 14px;
-
     }
 }

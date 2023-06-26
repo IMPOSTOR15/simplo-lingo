@@ -1,0 +1,39 @@
+.areaWrapper {
+    min-width: 100px;
+    height: 30px;
+    margin: auto 10px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    border: 1px solid blueviolet;
+    border-radius: 10px;
+    padding: 0 10px;
+}
+.areatext {
+    margin: auto auto;
+}
+
+.isUsed {
+    opacity: 0.5;
+}
+.notAllowed {
+    cursor: not-allowed;
+}
+.canGrab {
+    cursor: grab;
+}
+
+.grabbing {
+    cursor: grabbing;
+}
+
+
+@media (max-width: 768px) {
+    .areaWrapper {
+        min-width: 50px;
+        margin: auto 5px;
+        padding: 0 5px;
+    }
+}

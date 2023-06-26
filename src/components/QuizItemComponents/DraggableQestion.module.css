@@ -1,0 +1,22 @@
+.draggableQuestionWrapper {
+    display: flex;
+    color: #fff;
+    flex-direction: column;
+    
+}
+
+.qestionText {
+    justify-content: center;
+    display: flex;
+    color: #fff;
+    flex-direction: row;
+}
+.qestionElemText {
+    /* margin: 0; */
+    margin: auto 0;
+    vertical-align: middle;
+}
+.answers {
+    display: flex;
+    flex-direction: row;
+}

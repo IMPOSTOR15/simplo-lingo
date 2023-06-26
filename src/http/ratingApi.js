@@ -4,8 +4,13 @@ export const getUserRating = async (user_id) => {
     return data
 }
 
-export const giveCorrectAnswer = async (qestion_id, answer_id, user_id) => {
-    const {data} = await $host.post('api/rating/get_answer', {qestion_id, answer_id, user_id})
+export const giveCorrectFormAnswer = async (qestion_id, answer_id, user_id) => {
+    const {data} = await $host.post('api/rating/get_answer', {qestion_id, answer_id, user_id, type: "form"})
+    return data
+}
+
+export const giveCorrectDragAnswer = async (qestion_id, answers, user_id) => {
+    const {data} = await $host.post('api/rating/get_answer', {qestion_id, answers, user_id, type: "drag"})
     return data
 }
 

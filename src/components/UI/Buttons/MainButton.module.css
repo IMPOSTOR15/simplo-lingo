@@ -21,3 +21,9 @@
     -moz-box-shadow: 0px 0px 20px 7px rgba(255, 100, 35, 0.5);
     box-shadow: 0px 0px 20px 7px rgba(255, 100, 35, 0.5);
 }
+
+@media (max-width: 820px) {
+    .mainBtn {
+        font-size: 20px;
+    }
+}

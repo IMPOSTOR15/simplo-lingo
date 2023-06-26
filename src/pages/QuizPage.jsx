@@ -10,6 +10,8 @@ import LoadingIndicator from '../components/UI/Loading/LoadingIndicator';
 import EnterExitWraper from '../components/UI/Animation/EnterExitWrapper';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
+
+
 const quizPage = observer(() => {
     const [isLoading, setIsLoading] = useState(true)
 
@@ -36,6 +38,8 @@ const quizPage = observer(() => {
     return (
         <EnterExitWraper>
         <div className={cl.mainWrapper}>
+        
+            
             <h1 className={cl.headerText}>СПИСОК ВОПРОСОВ</h1>
             <ThemeRow
                 theme={theme}
@@ -44,6 +48,7 @@ const quizPage = observer(() => {
                 setDificult={setDificult}
             
             />
+            {/* <DraggableQestion/> */}
             {isLoading && <LoadingIndicator top={"50%"}/>}
             <div className={cl.tableWrapper} style={isLoading ? {opacity: 0} : {}}>
             {quizArr.length !== 0 ? (
@@ -65,7 +70,9 @@ const quizPage = observer(() => {
                 <NoData />
                 )}
             </div>
+            
         </div>
+        
         </EnterExitWraper>
     );
 });

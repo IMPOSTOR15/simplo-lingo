@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import cl from './/DNDArea.module.css'
 
-const DNDArea = ({ id, handleDrop, isQestionArea, text, isAlreadyUsed }) => {
+const DNDArea = ({ id, handleDrop, isQestionArea, text, isAlreadyUsed, isSolved }) => {
 
     let selectedBlockId = null;
 
@@ -97,7 +97,7 @@ const DNDArea = ({ id, handleDrop, isQestionArea, text, isAlreadyUsed }) => {
             onDragOver={dragOver}
             onDragLeave={dragLeave}
             onDrop={drop}
-            className={`${cl.areaWrapper} ${isAlreadyUsed ? cl.isUsed : ''} ${!isQestionArea && !isAlreadyUsed ? cl.canGrab : ''}`}
+            className={`${cl.areaWrapper} ${isAlreadyUsed ? cl.isUsed : ''} ${!isQestionArea && !isAlreadyUsed ? cl.canGrab : ''} ${isSolved ? cl.correctArea : ''}`}
             ref={elementRef}
             onTouchStart={touchStart}
             onTouchMove={touchMove}

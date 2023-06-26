@@ -29,6 +29,9 @@
     cursor: grabbing;
 }
 
+.correctArea {
+    border: 2px solid rgb(57, 243, 57);
+}
 
 @media (max-width: 768px) {
     .areaWrapper {

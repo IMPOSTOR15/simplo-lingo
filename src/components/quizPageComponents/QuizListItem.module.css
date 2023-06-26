@@ -135,7 +135,7 @@
     
     .quizTitleText {
         font-size: 14px;
-        max-width: calc(100vw - 130px);
+        max-width: calc(100vw - 170px);
     }
     .quizDiffFlag {
         border-radius: 50%;

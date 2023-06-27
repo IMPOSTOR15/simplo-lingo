@@ -160,27 +160,22 @@ const ProfilePage = observer(() => {
                 <div className={cl.qestionBtnSection}>
                     <Mainbutton onClick={()=> navigate(QUIZE_LIST_ROUTE)} >ПЕРЕЙТИ К ВОПРОСАМ</Mainbutton>
                 </div>
-                
-                
-                <div>
-                    <div className={cl.column}>
-                        <h2 className={cl.cardHeader}>Последнии решенные вопросы</h2>
-                        {
-                            quizArr.map((quiz,index) =>
-                                <QuizListItem
-                                    key={quiz.id}
-                                    index={index}
-                                    id={quiz.id}
-                                    title={quiz.title}
-                                    dificulty={quiz.dificult}
-                                    buttonText={'ОТКРЫТЬ'}
-                                />
-                            )
-                        }
-                    </div>
+                <div className={cl.column}>
+                    <h2 className={cl.cardHeader}>Последнии решенные вопросы</h2>
+                    {
+                        quizArr.map((quiz,index) =>
+                            <QuizListItem
+                                key={quiz.id}
+                                index={index}
+                                id={quiz.id}
+                                title={quiz.title}
+                                dificulty={quiz.dificult}
+                                buttonText={'ОТКРЫТЬ'}
+                            />
+                        )
+                    }
                 </div>
             </div>
-            {/* } */}
         </div>
         </EnterExitWraper>
     );

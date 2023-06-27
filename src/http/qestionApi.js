@@ -21,8 +21,9 @@ export const getSolvedQuestions = async (id) => {
     return data
 }
 
-export const getQuestionsFilterBySolvedAndTheme = async (user_id, dificult, theme) => {
-    const {data} = await $host.post('api/question/solved_theme_filter', {user_id, dificult, theme})
+export const getQuestionsFilterBySolvedAndTheme = async (user_id, dificult, theme, limit, page) => {
+    const {data} = await $host.post('api/question/solved_theme_filter', {user_id, dificult, theme, limit, page})
+    console.log("data", data);
     return data
 }
 export const solvedCheck = async (user_id, question_id) => {

@@ -41,4 +41,8 @@
     .notFoundWrapper {
         width: 100%;
     }
+    .notFoundImg {
+        width: 80%;
+        margin: 0 auto;
+    }
 }

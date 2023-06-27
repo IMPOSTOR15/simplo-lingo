@@ -73,7 +73,6 @@
 }
 
 @media (max-width: 768px) {
-    /* justify-content: center; */
     .firstRankAvatar {
         width: 100%;
         height: 100%;
@@ -92,11 +91,11 @@
 
     }
     .secondRankWrapper {
-        width: auto;
+        width: 65%;
         margin: auto 10px 0 10px;
     }
     .thirdRankWrapper {
-        width: auto;
+        width: 70%;
         margin: auto 10px 0 10px;
     }
 }

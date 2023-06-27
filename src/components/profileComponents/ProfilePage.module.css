@@ -190,6 +190,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 0 0 50px 0;
 }
 
 .qestionCard {
@@ -201,7 +202,7 @@
 @media (max-width: 820px) {
     .mainWrapper {
         flex-direction: column;
-        max-width: 90%;
+        max-width: 100%;
     }
     .row {
         flex-direction: column;
@@ -229,5 +230,9 @@
     }
     .randCircle { 
         margin: 20px auto;
+    }
+    .column {
+        width: 100%;
+        margin: 0 0 50px 0;
     }
 }

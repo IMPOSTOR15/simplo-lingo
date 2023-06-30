@@ -66,7 +66,7 @@ const Calendar = observer(({ checkedDates }) => {
     return (
         <table className={cl.calendarTable}>
             <thead >
-                <tr>
+                <tr className={cl.tableRow} >
                     {daysOfWeek.map((day, index) => (
                         <th scope="row" key={index}>{day}</th>
                     ))}

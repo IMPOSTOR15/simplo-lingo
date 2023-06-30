@@ -1,5 +1,6 @@
 import styled, { css, keyframes } from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import LazyLoadImage from '../LazyImage/LazyLoadImage';
 
 const darkViolet = '#894fb0';
 const orange = '#ff6423'

@@ -19,7 +19,7 @@ const LeaderboardPgae = observer(() => {
     return (
         <EnterExitWraper>
         <div>
-            {isLoading && <LoadingIndicator/> }
+            {isLoading && <LoadingIndicator position={"absolute"} top={"30%"}/> }
             <div className={cl.mainWrapper} style={isLoading ? {opacity: 0} : {}}>
                 <h1 className={cl.leaderboardHeader}>ТАБЛИЦА ЛИДЕРОВ</h1>
                 <TopUsersCard leaderboardData={leaderboardData.slice(0, 3)}/>

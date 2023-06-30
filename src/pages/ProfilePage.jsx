@@ -20,6 +20,7 @@ import Calendar from '../components/profileComponents/Calendar/Calendar'
 import awardIco from '../assets/award-ico.png'
 import editIco from '../assets/edit-ico.png'
 import logoutIco from '../assets/logout-ico.png'
+import LazyLoadImage from '../components/UI/LazyImage/LazyLoadImage';
 const ProfilePage = observer(() => {
     const [isLoading, setIsLoading] = useState(true)
     const {user} = useContext(Context)
@@ -71,7 +72,7 @@ const ProfilePage = observer(() => {
         });
     }
     if(isLoading) {
-        return <LoadingIndicator/>
+        return <LoadingIndicator position={"absolute"} top={"30%"}/>
     }
     return (
         <EnterExitWraper>
@@ -88,7 +89,8 @@ const ProfilePage = observer(() => {
                 <div className={cl.row}>
                     <div className={cl.logoCard}>
                         {user.user.avatar ? 
-                            <img className={cl.logoImg} src={process.env.REACT_APP_API_URL + user.user.avatar} alt="" />
+                            // <img className={cl.logoImg} src={process.env.REACT_APP_API_URL + user.user.avatar} alt="" />
+                            <LazyLoadImage className={cl.logoImg} src={process.env.REACT_APP_API_URL + user.user.avatar}/>
                         :
                             <img className={cl.logoImg} src={baseprofileimg} alt="" />
                         }

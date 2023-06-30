@@ -1,0 +1,40 @@
+.blurLoad {
+    position: relative;
+    /* width: 100% !important;
+    height: 100% !important; */
+    background-size: cover;
+    background-position: center;
+    filter: blur(5px);
+    transition: filter 300ms ease-in-out;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.blurLoadLoading::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    animation: pulse 2.5s infinite;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+@keyframes pulse {
+    0% {
+        background-color: rgba(255, 255, 255, 0);
+    }
+    50% {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+    100% {
+        background-color: rgba(255, 255, 255, 0);
+    }
+}
+
+.loadedImg {
+    opacity: 0;
+    width: 100% !important;
+    height: 100% !important;
+    transition: opacity 300ms ease-in-out;
+    margin: 0 !important;
+}

@@ -3,8 +3,6 @@
     border-radius: 20px;
     margin: auto;
     min-width: 330px;
-
-    
 }
 
 .calendarThead {
@@ -27,4 +25,36 @@
 
 .dayTd:hover {
     border: 2px solid #ff6423;
+}
+
+
+@media (max-width: 1350px) {
+    .calendarTable {
+        min-width: 270px;
+    }
+    .dayTd {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+@media (max-width: 1060px) {
+    .calendarTable {
+        min-width: 200px;
+    }
+    .dayTd {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .calendarTable {
+        min-width: 330px;
+    }
+    .dayTd {
+        width: 36px;
+        height: 36px;
+    }
 }

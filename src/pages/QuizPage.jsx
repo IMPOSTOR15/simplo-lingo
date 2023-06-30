@@ -14,56 +14,18 @@ import { useObserver } from '../hooks/useObserver';
 
 
 const quizPage = observer(() => {
+    const {user} = useContext(Context)
+
     const [isLoading, setIsLoading] = useState(true)
 
     const [quizArr, setQuizArr] = useState([])
-    const {user} = useContext(Context)
     const [theme, setTheme] = useState('')
     const [dificult, setDificult] = useState('')
     const [page, setPage] = useState(1)
     const [totalPages, setTotalPages] = useState(5)
-    const [limit, setLimit] = useState(10);
-    // const [sortType, setSortType] = useState('')
+    const [limit, setLimit] = useState(15);
 
     const lastElement = useRef();
-    // useEffect(() => {
-    //     setIsLoading(true)
-    //     let userid
-    //     if (user.user.id) {
-    //         userid = user.user.id
-    //     } else {
-    //         userid = localStorage.getItem('user_id')
-    //     }
-    //     console.log("userid, dificult, theme, limit, page", userid, dificult, theme, limit, page);
-    //     getQuestionsFilterBySolvedAndTheme(userid, dificult, theme, limit, page).then(
-    //         data => {
-    //             setQuizArr([...quizArr, ...data.rows])
-    //             setTotalPages(Math.ceil(data.count / limit))
-    //             console.log("setTotalPages",Math.ceil(data.count / limit));
-    //             setIsLoading(false)
-    //         }
-    //     )
-    // }, [page])
-
-    // useEffect(() => {
-    //     setIsLoading(true)
-    //     setPage(1)
-    //     let userid
-    //     if (user.user.id) {
-    //         userid = user.user.id
-    //     } else {
-    //         userid = localStorage.getItem('user_id')
-    //     }
-    //     console.log("userid, dificult, theme, limit, page", userid, dificult, theme, limit, page);
-    //     getQuestionsFilterBySolvedAndTheme(userid, dificult, theme, limit, page).then(
-    //         data => {
-    //             setQuizArr([...data.rows])
-    //             setTotalPages(Math.ceil(data.count / limit))
-    //             console.log("setTotalPages",Math.ceil(data.count / limit));
-    //             setIsLoading(false)
-    //         }
-    //     )
-    // }, [dificult, theme])
 
     useEffect(() => {
         setPage(1);
@@ -85,7 +47,7 @@ const quizPage = observer(() => {
             console.log("setTotalPages", Math.ceil(data.count / limit));
             setIsLoading(false);
         });
-    }, [dificult, theme, page]);
+    }, [dificult, theme, page, user.user.id, limit]);
 
     useObserver(lastElement, page < totalPages, isLoading, () => {
         console.log("page", page);
@@ -100,8 +62,6 @@ const quizPage = observer(() => {
         <div>
             <EnterExitWraper>
                 <div className={cl.mainWrapper}>
-                
-                    
                     <h1 className={cl.headerText}>СПИСОК ВОПРОСОВ</h1>
                     <ThemeRow
                         theme={theme}
@@ -110,8 +70,7 @@ const quizPage = observer(() => {
                         setDificult={setDificult}
                     
                     />
-                    
-                    <div className={cl.tableWrapper} style={isLoading ? {opacity: 0} : {}}>
+                    <div className={cl.tableWrapper} >
                     {quizArr.length !== 0 ? 
                         <TransitionGroup>
                             {quizArr.map((quiz, index) => (
@@ -126,15 +85,13 @@ const quizPage = observer(() => {
                                     />
                                 </CSSTransition>
                             ))}
-                            
                         </TransitionGroup>
                     :
-                        <NoData />
+                        (!isLoading && <NoData />)
                     }
                     </div>
                     {isLoading && <LoadingIndicator position={"relative"} top={'auto'}/>}
                 </div>
-                
             </EnterExitWraper>
             <div ref={lastElement} style={{height: 20, background: 'transperent'}}></div>
         </div>

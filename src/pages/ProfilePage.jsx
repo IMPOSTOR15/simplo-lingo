@@ -143,13 +143,11 @@ const ProfilePage = observer(() => {
                                 <p className={cl.infoParagraph}>Выиграно:</p>
                                 <p className={cl.infoParagraph}>Лучший результат:</p>
                                 <p className={cl.infoParagraph}>Последний результат:</p>
-                                {/* <p className={cl.infoParagraph}>Решено вопросов:</p> */}
                             </div>
                             <div className={cl.infoRow}>
                                 <p className={cl.infoParagraph}>0</p>
                                 <p className={cl.infoParagraph}>0</p>
                                 <p className={cl.infoParagraph}>0</p>
-                                {/* <p className={cl.infoParagraph}>{user.userRating.total_solved}</p> */}
                             </div>
                             
                         </div>

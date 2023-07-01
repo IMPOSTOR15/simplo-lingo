@@ -2,6 +2,7 @@ import React from 'react';
 import cl from './FirstSlide.module.css'
 import Typewriter from 'typewriter-effect';
 import Mainbutton from '../UI/Buttons/Mainbutton';
+import AnimatedBG from '../UI/AnimatedBackground/AnimatedBG';
 const FirstSlide = () => {
 
     const phrases = [
@@ -13,18 +14,7 @@ const FirstSlide = () => {
 
     return (
         <div className={cl.slideWrapper}>
-                <ul className={cl.circles}>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                </ul>
+            <AnimatedBG/>
             <h1 className={cl.mainHeader}>Ежедневно улучшай свои навыки языка</h1>
             <div className={cl.typewriterText}>
                 <div className='cl.subHeader' style={{color: 'transparent', height: '100px'}}></div>

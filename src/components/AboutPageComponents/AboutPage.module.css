@@ -1,0 +1,10 @@
+.mainWrapper {
+    margin-top: 7vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.mainHeader {
+    text-align: center;
+    color: #fff;
+}

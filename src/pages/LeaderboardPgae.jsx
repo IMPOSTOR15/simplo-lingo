@@ -6,6 +6,8 @@ import LeaderboardTable from '../components/LeaderBoardComponents/LeaderboardTab
 import { getLeaderboard } from '../http/ratingApi';
 import LoadingIndicator from '../components/UI/Loading/LoadingIndicator';
 import EnterExitWraper from '../components/UI/Animation/EnterExitWrapper';
+import AnimatedBG from '../components/UI/AnimatedBackground/AnimatedBG';
+
 const LeaderboardPgae = observer(() => {
     const [isLoading, setIsLoading] = useState(true)
     const [leaderboardData, setleaderboardData] = useState([])
@@ -19,6 +21,7 @@ const LeaderboardPgae = observer(() => {
     return (
         <EnterExitWraper>
         <div>
+            <AnimatedBG/>
             {isLoading && <LoadingIndicator position={"absolute"} top={"30%"}/> }
             <div className={cl.mainWrapper} style={isLoading ? {opacity: 0} : {}}>
                 <h1 className={cl.leaderboardHeader}>ТАБЛИЦА ЛИДЕРОВ</h1>

@@ -7,13 +7,15 @@ import { HOME_ROUTE,
         QUIZE_LIST_ROUTE,
         QUIZE_ITEM_ROUTE,
         LEADERBOARD_ROUTE,
-        ACHIVEMENTS_ROUTE
+        ACHIVEMENTS_ROUTE,
+        ABOUT_ROUTE
     } from "./utils/consts"
 import ProfilePage from "./pages/ProfilePage"
 import QuizPage from "./pages/QuizPage"
 import QuizItem from "./components/QuizItemComponents/QuizItem"
 import LeaderboardPgae from "./pages/LeaderboardPgae"
 import AchivementPage from "./pages/AchivementPage"
+import AboutPage from "./pages/AboutPage"
 export const authRoutes = [
     {
         path: QUIZE_LIST_ROUTE,
@@ -49,5 +51,9 @@ export const publicRoutes = [
     {
         path: LEADERBOARD_ROUTE,
         component: <LeaderboardPgae/>
+    },
+    {
+        path: ABOUT_ROUTE,
+        component: <AboutPage/>
     }
 ]

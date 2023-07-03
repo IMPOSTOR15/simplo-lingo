@@ -1,0 +1,16 @@
+.colapseWrapper {
+    width: 80%;
+    margin: auto;
+}
+
+
+
+.collapseText {
+    margin: 5px;
+    font-size: 20px;
+}
+
+.colapseHeader {
+    color: #fff;
+    font-size: 30px;
+}

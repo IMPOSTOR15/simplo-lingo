@@ -1,0 +1,22 @@
+.aboutFooterWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin:  200px 10% 0 10%;
+}
+.footerHeader {
+    color: #bdbdbd;
+}
+.ContactBlock {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.contact {
+    margin: 0 5px;
+}
+.contactImg {
+    width: 40px;
+    height: 40px;
+}

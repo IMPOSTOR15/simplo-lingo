@@ -1,0 +1,45 @@
+.content {
+    border: 2px solid orangered;
+    padding: 0.5rem;
+    border-radius: 10px;
+    color: #fff;
+    background-color: rgba(119, 136, 153, 0.2);
+}
+    
+.contentParent {
+    height: 0px;
+    overflow: hidden;
+    transition: height ease 0.5s;
+    
+}
+    
+.contentShow {
+    height: 200px;
+}
+
+.toggleButton {
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+    cursor: pointer;
+    width: 500px;
+    text-align: left;
+    font-size: 23px;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin: 10px 10px;
+    padding: 5px 0;
+    background-color: transparent;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+}
+
+.toggleButton:hover {
+    border-bottom: 2px solid #ff6423;
+}
+
+@media (max-width: 768px) {
+    .toggleButton {
+        width: auto;
+    }
+}

@@ -1,9 +1,9 @@
 .sliderContainer {
   overflow: hidden;
   width: 100%;
-  height: 400px;
+  height: 450px;
   position: relative;
-  padding-top: 40px;
+  padding: 40px 0;
 }
   
 .slider {
@@ -14,9 +14,14 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  width: 300%;
-  animation: scroll 40s linear infinite; /* Анимация для авто-прокрутки */
+  width: 240%;
+  animation: scroll 40s linear infinite;
+  transition: all 1s ease-in-out; /* Анимация для авто-прокрутки */
 } 
+
+.sliderInner:hover {
+  animation-play-state: paused;
+}
 
 @keyframes scroll {
   0% {
@@ -25,4 +30,16 @@
   100% {
     transform: translateX(-50%); /* Здесь 300px — ширина одного слайда */
   }
+}
+
+@media (max-width: 768px) {
+  .sliderContainer {
+    padding-top: 20px;
+    width: 100%;
+    height: 430px;
+  }
+  .sliderInner {
+    width: 800%;
+  }
+
 }

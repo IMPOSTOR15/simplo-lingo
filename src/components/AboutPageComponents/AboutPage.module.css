@@ -7,4 +7,43 @@
 .mainHeader {
     text-align: center;
     color: #fff;
+    font-size: 60px;
+}
+.dynamicBackground {
+    z-index: -1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 110vh;
+    margin-top: -15px;
+}
+
+.devider {
+    width: 80%;
+    height: 3px;
+    background-color: blueviolet;
+    margin: 10px auto;
+    border-radius: 2px;
+}
+
+.registrationText {
+    width: 60%;
+    margin: 20px auto;
+    color: #fff;
+    font-size: 25px;
+}
+.footerButton {
+    margin: 50px auto;
+}
+@media (max-width: 768px) {
+    .dynamicBackground {
+        
+        top: 0vh;
+        width: 100vw;
+    }
+    .registrationText {
+        width: 90%;
+    }
 }

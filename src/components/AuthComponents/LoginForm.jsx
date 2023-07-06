@@ -5,18 +5,21 @@ import { PROFILE_ROUTE } from '../../utils/consts';
 import { Context } from '../..';
 import { observer } from 'mobx-react-lite';
 import { login } from '../../http/userAPI';
+import Alert from '../UI/Alert/Alert';
 const LoginForm = observer(() => {
     const {user} = useContext(Context)
     const navigate = useNavigate()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [valid, setValid] = useState(true);
+    const [errorText, setErrorText] = useState('')
 
     const handleChangeEmail = (event) => {
         const input = event.target.value;
         setEmail(input);
         setValid(validateEmail(input));
     };
+    
     const handleChangePassword = (event) => {
         const input = event.target.value;
         setPassword(input);
@@ -33,21 +36,24 @@ const LoginForm = observer(() => {
         try {
             if (validateEmail(email)) {
                 let data = await login(email, password)
-                user.setUser(data)
-                user.setIsAuth(true)
-                navigate(PROFILE_ROUTE)
+                if (data) {
+                    user.setUser(data)
+                    user.setIsAuth(true)
+                    navigate(PROFILE_ROUTE)
+                } else {
+                    setErrorText('Пользователь не найден')
+                }
             } else {
                 setValid(false)
             }
-
         } catch (e) {
-            alert(e.response.data.message)
-
+            setErrorText("Ошибка входа")
         }
         
     }
     return (
         <div>
+            <Alert errorText={errorText} setErorrText={setErrorText}></Alert>
             <div className={cl.loginForm}>
                 <h2>Вход в профиль</h2>
                 <div className={cl.textField}>

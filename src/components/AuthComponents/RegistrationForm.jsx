@@ -64,7 +64,7 @@ const RegistrationForm = () => {
                 setErrorText("Введите корректный email");
                 return;
             }
-            await registerUser(); // Вызываем функцию registerUser, а не registration
+            await registerUser();
         } catch (e) {
             setErrorText("Ошибка регистрации");
             console.log(e);

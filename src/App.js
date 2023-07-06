@@ -26,7 +26,7 @@ const App = observer(() => {
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar></Navbar>
+        <Navbar/>
         <AppRouter/>
       </BrowserRouter>
     </div>

@@ -11,9 +11,14 @@
   border-radius: 40px; */
   /* box-shadow: 0 0 20px 0.4rem rgba(124,0,255,0.3); */
 }
-
+.errorText {
+  color: rgb(255, 113, 113);
+  align-self: self-start;
+  text-align: left;
+  margin: 0 0 10px 0;
+}
 .textField {
-  margin-bottom: 1rem;
+  margin-bottom: 5px;
   width: 100%;
 }
 

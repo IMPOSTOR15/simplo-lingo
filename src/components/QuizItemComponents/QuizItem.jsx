@@ -144,7 +144,11 @@ const QuizItem = observer(() => {
         <EnterExitWraper>
         <div>
             <QuizAnswerModal id={id} show={showModal} setShow={setShowModal} isCorrect={isCorrectAnswer}/>
-            {isLoading && <LoadingIndicator/>}
+            {isLoading && 
+                <div className={cl.loadingIndicatorWrapper}>
+                    <LoadingIndicator/>
+                </div>
+            }
             {quizData ?
             <div className={cl.mainWrapper} style={isLoading ? {opacity: 0} : {}}>
                 <div className={cl.quizNavigationWrapeer}>

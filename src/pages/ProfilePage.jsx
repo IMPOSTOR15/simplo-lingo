@@ -21,6 +21,7 @@ import awardIco from '../assets/award-ico.png'
 import editIco from '../assets/edit-ico.png'
 import logoutIco from '../assets/logout-ico.png'
 import LazyLoadImage from '../components/UI/LazyImage/LazyLoadImage';
+import AboutFooter from '../components/AboutPageComponents/AboutFooter';
 const ProfilePage = observer(() => {
     const [isLoading, setIsLoading] = useState(true)
     const {user} = useContext(Context)
@@ -176,6 +177,7 @@ const ProfilePage = observer(() => {
                     }
                 </div>
             </div>
+            <AboutFooter/>
         </div>
         </EnterExitWraper>
     );

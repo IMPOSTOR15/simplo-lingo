@@ -12,28 +12,67 @@ const RegistrationForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmedPassword, setConfirmedPassword] = useState('');
+    const [errorText, setErrorText] = useState('')
+    const [validEmail, setValidEmail] = useState(true)
+    const [validPassword, setValidPassword] = useState(true)
+
     const navigate = useNavigate()
-    const [errorText, setErorrText] = useState('')
-    
+
+    const handleChangeEmail = (event) => {
+        const input = event.target.value;
+        setEmail(input);
+        setValidEmail(validateEmail(input));
+    };
+
+    const handleChangePassword = (event) => {
+        const input = event.target.value;
+        setPassword(input);
+        setValidPassword(validatePassword(event))
+    }
+
+    const validateEmail = (input) => {
+        if(!input) return true
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const isValid = emailRegex.test(input);
+        return isValid
+    };
+
+    const validatePassword = (input) => {
+        const isValid = input.length >= 8;
+        return isValid
+    };
+
+    const registerUser = async () => {
+        const data = await registration(email, password, 'user');
+        user.setUser(data);
+        user.setIsAuth(true);
+        console.log(data);
+        navigate(PROFILE_ROUTE);
+      };
+      
     const click = async () => {
         try {
-            if (password === confirmedPassword) {
-                const data = await registration(email, password, 'user');
-                user.setUser(data);
-                user.setIsAuth(true);
-                console.log(data);
-                navigate(PROFILE_ROUTE);
-            } else {
-                setErorrText("Пароли не совпадают");
+            if (password !== confirmedPassword) {
+                setErrorText("Пароли не совпадают");
+                return;
             }
-        } 
-        catch (e) {
-            setErorrText("Ошибка регистрации");
+            if (!validatePassword(password)) {
+                setErrorText("Пароль должен быть длиннее 8 символов");
+                return;
+            }
+            if (!validateEmail(email)) {
+                setErrorText("Введите корректный email");
+                return;
+            }
+            await registerUser(); // Вызываем функцию registerUser, а не registration
+        } catch (e) {
+            setErrorText("Ошибка регистрации");
+            console.log(e);
         }
-    }
+    };
     return (
         <div>
-            <Alert errorText={errorText} setErorrText={setErorrText}></Alert>
+            <Alert errorText={errorText} setErorrText={setErrorText}></Alert>
             <div className={cl.loginForm}>
                 <h2>Регистрация пользователя</h2>
                 <div className={cl.textField}>
@@ -48,7 +87,7 @@ const RegistrationForm = () => {
                         name="email"
                         value={email}
                         placeholder='Введите e-mail'
-                        onChange={e => setEmail(e.target.value)}
+                        onChange={e => handleChangeEmail(e)}
                     />
                 </div>
                 <div className={cl.textField}>
@@ -63,7 +102,7 @@ const RegistrationForm = () => {
                         value={password}
                         name="password"
                         placeholder='Введите пароль'
-                        onChange={e => setPassword(e.target.value)}
+                        onChange={e => handleChangePassword(e)}
                     />
                 </div>
                 <div className={cl.textField}>

@@ -1,10 +1,15 @@
+
+
 .circles{
-    position: absolute;
+    margin: 0;
+    width: 100%;
+    left: 0;
+    position: fixed;
     top: 60px;
     left: auto;
     right: auto;
     width: 90%;
-    height: 92%;
+    height: 95%;
     overflow: hidden;
     z-index: -1;
 }

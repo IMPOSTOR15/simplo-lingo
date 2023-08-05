@@ -34,3 +34,10 @@ export const getUserData= async (id) => {
     console.log(data.user);
     return data.user
 }
+
+export const changePassword = async (id, password) => {
+    const {data} = await $authHost.post('api/user/changepassword', {id, password})
+    localStorage.setItem('token', data.token)
+    localStorage.setItem('user_id', jwtDecode(data.token).id)
+    return jwtDecode(data.token)
+}

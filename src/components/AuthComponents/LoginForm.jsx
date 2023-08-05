@@ -32,11 +32,12 @@ const LoginForm = observer(() => {
         return isValid
     };
 
-    const login = async () => {
+    const userLogin = async () => {
         try {
             if (validateEmail(email)) {
                 let data = await login(email, password)
                 if (data) {
+                    console.log(data);
                     user.setUser(data)
                     user.setIsAuth(true)
                     navigate(PROFILE_ROUTE)
@@ -47,7 +48,8 @@ const LoginForm = observer(() => {
                 setValid(false)
             }
         } catch (e) {
-            setErrorText("Ошибка входа")
+            console.log(e.response.data.message)
+            setErrorText(e.response.data.message)
         }
         
     }
@@ -89,7 +91,7 @@ const LoginForm = observer(() => {
                 </div>
                 <p className={cl.registrationText}>Нет аккаунта? <NavLink className={cl.registrationLink} to={'/registration'}>Регистрация</NavLink></p>
                 
-                <button className={cl.LoginButton} onClick={login}>ВОЙТИ</button>
+                <button className={cl.LoginButton} onClick={userLogin}>ВОЙТИ</button>
             </div>
         </div>
     );

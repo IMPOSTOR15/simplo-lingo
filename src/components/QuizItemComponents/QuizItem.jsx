@@ -104,6 +104,7 @@ const QuizItem = observer(() => {
                 data => {
                     setIsCorrectAnswer(data.isCorrect)
                     setShowModal(true)
+                    setPikedAnswer({})
                 }
             )
         }
@@ -113,6 +114,7 @@ const QuizItem = observer(() => {
                 data => {
                     setIsCorrectAnswer(data.isCorrect)
                     setShowModal(true)
+                    setPikedAnswer({})
                 }
             )
         }

@@ -4,9 +4,11 @@ import { editUser, getUserData } from '../../http/userAPI';
 import { observer } from 'mobx-react-lite';
 import { Context } from '../..';
 import SmallLoader from '../UI/Loading/SmallLoader';
+import ChangePasswordModal from './ChangePasswordModal'
 
 const EditProfileModal = observer(({show, setShow}) => {
     const [isLoading, setIsLoading] = useState(false)
+    const [passwordModal, setPasswordModal] = useState(false)
 
     const {user} = useContext(Context)
     const [name, setName] = useState('')
@@ -65,26 +67,29 @@ const EditProfileModal = observer(({show, setShow}) => {
                         value={email}
                         onChange={e => setEmail(e.target.value)}
                     />
-
-                    <label 
-                        className={cl.uploadPhotoLabel}
-                        htmlFor="upload-photo"
-                    >
-                        {file?.name ?? "Загрузите аватар"}
-                    </label>
-                    <input
-                        type='file'
-                        id="upload-photo"
-                        accept=".jpeg, .jpg, .gif, .png"
-                        className={cl.modalPhotoInput}
-                        onChange={selectFile}
-                    />
+                    <div className={cl.buttonRow}>
+                        <label 
+                            className={cl.uploadPhotoLabel}
+                            htmlFor="upload-photo"
+                        >
+                            {file?.name ?? "Загрузите аватар"}
+                        </label>
+                        <input
+                            type='file'
+                            id="upload-photo"
+                            accept=".jpeg, .jpg, .gif, .png"
+                            className={cl.modalPhotoInput}
+                            onChange={selectFile}
+                        />
+                        <button className={cl.changePasswordbtn} onClick={() => setPasswordModal((prev) => !prev)}>Изменить пароль</button>
+                    </div>
+                    <ChangePasswordModal isOpen={passwordModal} onClose={() => setPasswordModal((prev) => !prev)} />
                 </div>
-                
                 <div className={cl.modalFooter}>
                     <button className={cl.editButton} onClick={() => editUserData()}>Применить</button>
                     <button className={cl.closeButton} onClick={() => setShow(false)}>Закрыть</button>
                 </div>
+                
             </div>
         </div>
     );

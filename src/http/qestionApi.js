@@ -30,3 +30,8 @@ export const solvedCheck = async (user_id, question_id) => {
     const {data} = await $host.post('api/question/check_solved', {user_id, question_id})
     return data
 }
+
+export const addQuestion = async (questionData) => {
+    const {data} = await $host.post('api/question/', {questionData})
+    return data
+}

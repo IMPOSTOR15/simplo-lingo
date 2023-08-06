@@ -3,7 +3,7 @@ import cl from "../components/profileComponents/ProfilePage.module.css"
 import { getUserData } from '../http/userAPI';
 import { Context } from '..';
 import { observer } from 'mobx-react-lite';
-import { ACHIVEMENTS_ROUTE, HOME_ROUTE, QUIZE_LIST_ROUTE } from '../utils/consts';
+import { ACHIVEMENTS_ROUTE, ADMIN_ROUTE, HOME_ROUTE, QUIZE_LIST_ROUTE } from '../utils/consts';
 import { useNavigate } from 'react-router-dom';
 import baseprofileimg from '../assets/profileMockup.png'
 import EditProfileModal from '../components/profileComponents/EditProfileModal';
@@ -17,6 +17,7 @@ import { CSSTransition } from 'react-transition-group';
 import EnterExitWraper from '../components/UI/Animation/EnterExitWrapper';
 import Calendar from '../components/profileComponents/Calendar/Calendar'
 
+import AdminIco from '../assets/admin_ico.svg'
 import awardIco from '../assets/award-ico.png'
 import editIco from '../assets/edit-ico.png'
 import logoutIco from '../assets/logout-ico.png'
@@ -71,6 +72,7 @@ const ProfilePage = observer(() => {
             console.error(error);
             setIsLoading(false);
         });
+        console.log(user.user);
     }
     if(isLoading) {
         return <LoadingIndicator position={"absolute"} top={"30%"}/>
@@ -120,9 +122,17 @@ const ProfilePage = observer(() => {
                             <button className={cl.editBtn} onClick={() => showEditModal()}>
                                 <img className={cl.buttonIco} src={editIco} alt="" />
                             </button>
+                            {user.user.role === 'admin' ? 
+                                <button className={cl.editBtn} onClick={() => navigate(ADMIN_ROUTE)}>
+                                <img className={cl.buttonIco} src={AdminIco} alt="" />
+                                </button>
+                                :
+                                ''
+                            }
                             <button className={cl.editBtn} onClick={() => logOut()}>
                             <img className={cl.buttonIco} src={logoutIco} alt="" />
                             </button>
+                            
                         </div>
                     </div>
                     <div className={cl.card}>
